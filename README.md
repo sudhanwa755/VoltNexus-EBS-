@@ -127,7 +127,7 @@ The architecture utilizes **8 optimized tables** with strictly enforced Foreign 
 ```bash
 git clone [https://github.com/sudhanwa755/EBS.git](https://github.com/sudhanwa755/EBS.git)
 cd EBS
-
+```
 ### 3\. Configure Backend (Supabase)
 
 1.  Create a new project in Supabase.
@@ -167,7 +167,7 @@ npx http-server
 **Using VS Code:**
 Right-click `index.html` and select **"Open with Live Server"**.
 
-\</details\>
+
 
 -----
 
