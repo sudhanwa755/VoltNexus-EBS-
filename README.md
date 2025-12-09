@@ -1,311 +1,289 @@
-# ⚡ ElectroBill - Electricity Billing System
+<a name="readme-top"></a>
 
-A modern, full-featured electricity billing management system designed for both customers and administrators. Built with vanilla JavaScript and powered by Supabase for real-time data management.
+<div align="center">
 
-![Version](https://img.shields.io/badge/version-1.0-blue.svg)
-![Status](https://img.shields.io/badge/status-production%20ready-green.svg)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+  <br />
+  <img src="https://cdn-icons-png.flaticon.com/512/2933/2933116.png" alt="Logo" width="80" height="80">
 
-## 🌟 Features
+  <h1 style="font-size: 3rem; font-weight: bold; margin-top: 0;">⚡ Electricity Billing System</h1>
 
-### Customer Portal
-- **User Authentication** - Secure email/password authentication via Supabase Auth
-- **Auto-Generated Meter Numbers** - Unique meter numbers in MTR-XXXXXX format
-- **Dashboard** - Real-time consumption overview, pending bills, and consumption charts
-- **Bill Management** - View, filter, and search bills with PDF download capability
-- **Profile Management** - Update personal information, contact details, and address
-- **Payment Processing** - Online bill payment with payment history tracking
-- **Dark Mode** - Toggle between light and dark themes
+  <p style="font-size: 1.2rem; color: #555;">
+    <b>The Next-Gen Electricity Billing System</b>
+  </p>
 
-### Admin Portal
-- **Admin Dashboard** - System-wide analytics, revenue statistics, and user metrics
-- **User Management** - View, search, and manage all registered users
-- **Bill Management** - Create, update, and delete customer bills
-- **Meter Reading Entry** - Add meter readings with automatic bill generation
-- **Tariff Management** - Create and manage tiered pricing plans
-- **Reports & Analytics** - Generate revenue, outstanding bills, and user activity reports with CSV/PDF export
+  <p>
+    <i>A modern, secure, and real-time platform for comprehensive utility management.</i>
+  </p>
 
-## 🚀 Tech Stack
+  <p>
+    <a href="https://github.com/sudhanwa755/EBS/graphs/contributors">
+      <img src="https://img.shields.io/github/contributors/sudhanwa755/EBS?style=for-the-badge&color=orange" alt="Contributors">
+    </a>
+    <a href="https://github.com/sudhanwa755/EBS/network/members">
+      <img src="https://img.shields.io/github/forks/sudhanwa755/EBS?style=for-the-badge&color=blue" alt="Forks">
+    </a>
+    <a href="https://github.com/sudhanwa755/EBS/stargazers">
+      <img src="https://img.shields.io/github/stars/sudhanwa755/EBS?style=for-the-badge&color=yellow" alt="Stars">
+    </a>
+    <a href="https://github.com/sudhanwa755/EBS/issues">
+      <img src="https://img.shields.io/github/issues/sudhanwa755/EBS?style=for-the-badge&color=red" alt="Issues">
+    </a>
+    <a href="https://github.com/sudhanwa755/EBS/blob/master/LICENSE">
+      <img src="https://img.shields.io/github/license/sudhanwa755/EBS?style=for-the-badge&color=green" alt="License">
+    </a>
+  </p>
 
-### Frontend
-- **HTML5** - Semantic markup
-- **Tailwind CSS** - Utility-first CSS framework (via CDN)
-- **Vanilla JavaScript (ES6+)** - No frameworks, pure JavaScript modules
-- **html2pdf.js** - PDF generation from HTML
+  <br />
 
-### Backend & Database
-- **Supabase** - Backend as a Service (BaaS)
-- **PostgreSQL** - Relational database
-- **Supabase Auth** - Authentication and authorization
-- **Row-Level Security (RLS)** - Data access control
 
-### Libraries & Services
-- **@supabase/supabase-js** - Supabase JavaScript client
-- **Google Fonts** - Inter and Poppins fonts
+  <a href="#demo"><strong>View Demo »</strong></a> · 
+  <a href="#installation"><strong>Setup Guide »</strong></a> · 
+  <a href="https://github.com/sudhanwa755/EBS/issues"><strong>Report Bug »</strong></a>
 
-## 📋 Database Schema
+</div>
 
-The system uses 8 core PostgreSQL tables:
+<br />
 
-| Table | Purpose |
-|-------|---------|
-| `profiles` | User account information with roles (USER/ADMIN) |
-| `customer_info` | Extended customer details, meter & connection info |
-| `bills` | Electricity bills with status tracking |
-| `consumption` | Meter reading records and consumption tracking |
-| `tariff_plans` | Tiered electricity rate plans |
-| `customer_tariff_mapping` | Customer-tariff assignments over time |
-| `consumption_limits` | User-defined consumption alerts |
-| `consumption_alerts` | Audit trail for consumption limit alerts |
+---
 
-### Key Features
-- ✅ Row-Level Security (RLS) on all tables
-- ✅ Automatic timestamps via triggers
-- ✅ Foreign key constraints with CASCADE delete
-- ✅ Unique constraints (email, meter_number)
-- ✅ CHECK constraints for data validation
-- ✅ Performance-optimized indexes
+## 🚀 Overview
 
-## 🛠️ Installation & Setup
+**Electricity Billing System** is a robust, vanilla JavaScript application powered by **Supabase**. It bridges the gap between utility providers and consumers, offering a seamless interface for tracking consumption, managing tariffs, and processing payments securely.
 
-### Prerequisites
-- A Supabase account (free tier works)
-- A local web server (Live Server, Python HTTP server, etc.)
-- Modern web browser
+> **Why Electricity Billing System?**
+> Unlike legacy systems, Electricity Billing System operates in **real-time** with Row Level Security (RLS), ensuring data privacy while delivering instant analytics.
 
-### Step 1: Clone the Repository
+---
+
+## 🧩 Tech Stack
+
+<div align="center">
+
+| **Frontend Layer** | **Backend Layer** | **Tools & DevOps** |
+|:---:|:---:|:---:|
+| ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white) | ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white) | ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=flat-square&logo=git&logoColor=white) |
+| ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat-square&logo=tailwind-css&logoColor=white) | ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=flat-square&logo=postgresql&logoColor=white) | ![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=flat-square&logo=npm&logoColor=white) |
+| ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=flat-square&logo=javascript&logoColor=%23F7DF1E) | ![Auth](https://img.shields.io/badge/Auth-Secure-red?style=flat-square) | ![VS Code](https://img.shields.io/badge/VS%20Code-0078d7.svg?style=flat-square&logo=visual-studio-code&logoColor=white) |
+
+</div>
+
+---
+
+## 🌟 Key Features
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h3 align="center">👤 For Customers</h3>
+      <ul>
+        <li>✨ <b>Self-Service Portal:</b> Auto-generated Meter IDs (<code>MTR-XXXXXX</code>).</li>
+        <li>📊 <b>Interactive Dashboard:</b> Visual usage charts & history.</li>
+        <li>📃 <b>Bill Management:</b> Filter, search, and download <b>PDF bills</b>.</li>
+        <li>💳 <b>Payments:</b> Secure online payment simulation.</li>
+        <li>🌙 <b>UI/UX:</b> Responsive design with Dark Mode.</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top">
+      <h3 align="center">🛡 For Admins</h3>
+      <ul>
+        <li>📈 <b>Macro Analytics:</b> System-wide consumption data.</li>
+        <li>⚡ <b>Tariff Control:</b> Create dynamic tiered pricing plans.</li>
+        <li>👥 <b>User Management:</b> CRUD operations for users & meters.</li>
+        <li>📂 <b>Reports:</b> Export data to <b>CSV & PDF</b>.</li>
+        <li>🔒 <b>Security:</b> Role-Based Access Control (RBAC).</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 🧱 Database Schema
+
+The architecture utilizes **8 optimized tables** with strictly enforced Foreign Keys and RLS policies.
+
+| Table Name | Description |
+| :--- | :--- |
+| 🟢 `profiles` | Stores auth data and links Roles (Admin/Customer). |
+| 🟢 `customer_info` | Links Profiles to Meter Numbers & Addresses. |
+| 🟢 `bills` | The ledger for generated bills, status, and amounts. |
+| 🟢 `consumption` | Granular meter reading data (Units used). |
+| 🟢 `tariff_plans` | Logic for pricing tiers (Unit/Cost). |
+| 🟡 `customer_tariff_mapping` | Links specific customers to specific tariff plans. |
+| 🔴 `consumption_limits` | Sets thresholds for usage alerts. |
+| 🔴 `consumption_alerts` | Logs triggered alerts for high usage. |
+
+---
+
+## 🛠 Installation & Setup
+
+
+
+### 1. Prerequisites
+* A [Supabase](https://supabase.com/) Account.
+* Node.js (optional, for `http-server`) or Python.
+
+### 2. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/electricity-billing-system.git
-cd electricity-billing-system
-```
+git clone [https://github.com/sudhanwa755/EBS.git](https://github.com/sudhanwa755/EBS.git)
+cd EBS
 
-### Step 2: Supabase Setup
+### 3\. Configure Backend (Supabase)
 
-1. **Create a Supabase Project**
-   - Go to [https://supabase.com](https://supabase.com)
-   - Sign up and create a new project
-   - Wait for the project to be ready
+1.  Create a new project in Supabase.
+2.  Go to the **SQL Editor**.
+3.  Copy the contents of `clean-setup-FIXED.sql` and run it.
+4.  *Verify that all 8 tables are created successfully.*
 
-2. **Get Your Credentials**
-   - Navigate to Project Settings → API
-   - Copy the **Project URL**
-   - Copy the **anon/public** API Key
+### 4\. Link Credentials
 
-3. **Setup Database**
-   - Open the SQL Editor in Supabase
-   - Copy the entire contents of `clean-setup-FIXED.sql`
-   - Paste into the SQL Editor and click **Run**
-   - Wait for "Setup Complete!" message
-
-4. **Verify Tables**
-   - Go to Table Editor
-   - Confirm all 8 tables are created: `profiles`, `customer_info`, `bills`, `consumption`, `tariff_plans`, `customer_tariff_mapping`, `consumption_limits`, `consumption_alerts`
-
-### Step 3: Configure Application
-
-1. Open `frontend/assets/js/config.js`
-2. Update with your Supabase credentials:
+Create a file at `frontend/assets/js/config.js`:
 
 ```javascript
 export const CONFIG = {
-    SUPABASE_URL: 'YOUR_PROJECT_URL_HERE',
-    SUPABASE_ANON_KEY: 'YOUR_ANON_KEY_HERE'
+  SUPABASE_URL: 'YOUR_SUPABASE_PROJECT_URL',
+  SUPABASE_ANON_KEY: 'YOUR_SUPABASE_ANON_KEY'
 };
 ```
 
-3. Save the file
+### 5\. Launch Application
 
-### Step 4: Run the Application
+You can use any local server.
 
-**Option A: Using VS Code Live Server**
-1. Install the "Live Server" extension
-2. Right-click on `frontend/index.html`
-3. Select "Open with Live Server"
-4. Application opens at `http://127.0.0.1:5500/frontend/`
+**Using Python:**
 
-**Option B: Using Python HTTP Server**
 ```bash
 cd frontend
 python -m http.server 8000
 ```
-Then open `http://localhost:8000` in your browser
 
-**Option C: Using npx http-server**
+**Using Node (http-server):**
+
 ```bash
 cd frontend
 npx http-server
 ```
 
-## 👤 Default Credentials
+**Using VS Code:**
+Right-click `index.html` and select **"Open with Live Server"**.
 
-### Create Admin User
-After setting up the database, create an admin user by running this SQL in Supabase:
+\</details\>
 
-```sql
--- First register a user through the app, then run:
-UPDATE profiles SET role = 'ADMIN' WHERE email = 'your-email@example.com';
+-----
+
+## 🔐 Admin Access
+
+By default, new users are Customers. To promote a user to **Admin**:
+
+1.  Register a new user via the app UI.
+2.  Go to Supabase SQL Editor.
+3.  Run:
+    ```sql
+    UPDATE profiles 
+    SET role = 'ADMIN' 
+    WHERE email = 'your-email@example.com';
+    ```
+
+-----
+
+## 📂 Project Structure
+
+```sh
+frontend/
+├── admin/              # Admin-specific logic & views
+├── assets/
+│   ├── css/            # Tailwind & Custom Styles
+│   ├── js/             # Core Modules (Auth, Bill Logic)
+│   └── images/         # Static Assets
+├── components/         # Reusable UI fragments
+├── index.html          # Landing Page
+├── dashboard.html      # Main User Interface
+└── ...
 ```
 
-### Test Users
-Register new users through the application's registration page. Each user will receive:
-- Auto-generated meter number (MTR-000001, MTR-000002, etc.)
-- Default USER role
-- Active account status
+-----
 
-## 📁 Project Structure
+## 🐞 Troubleshooting
 
-```
-EBS/
-├── clean-setup-FIXED.sql           # Complete database schema
-├── PROJECT_INFO.txt                # Detailed project documentation
-├── README.md                       # This file
-│
-└── frontend/                       # Web application
-    ├── index.html                  # Landing page
-    ├── login.html                  # Login page
-    ├── register.html               # Registration with meter number modal
-    ├── dashboard.html              # User dashboard
-    ├── my-bills.html               # Bills list with PDF download
-    ├── payment.html                # Payment processing
-    ├── profile.html                # Profile management
-    │
-    ├── admin/                      # Admin portal
-    │   ├── dashboard.html          # Admin dashboard
-    │   ├── manage-users.html       # User management
-    │   ├── bills.html              # Bill management
-    │   ├── add-reading.html        # Meter reading entry
-    │   ├── tariffs.html            # Tariff management
-    │   └── reports.html            # Reports & analytics
-    │
-    └── assets/                     # Static assets
-        ├── css/
-        │   └── main.css            # Global styles
-        └── js/                     # JavaScript modules
-            ├── config.js           # Supabase configuration
-            ├── supabase.js         # Supabase client
-            ├── auth.js             # Authentication logic
-            ├── api.js              # Database operations
-            ├── utils.js            # Utility functions
-            ├── dashboard.js        # Dashboard logic
-            ├── bills.js            # Bills & PDF generation
-            ├── profile.js          # Profile management
-            ├── payment.js          # Payment processing
-            ├── admin.js            # Admin common logic
-            ├── admin-users.js      # User management
-            ├── admin-bills.js      # Admin bill management
-            ├── admin-add-reading.js # Meter reading entry
-            ├── admin-tariffs.js    # Tariff management
-            ├── admin-reports.js    # Report generation
-            └── admin-analytics.js  # Analytics calculations
-```
+\<details\>
+\<summary\>\<strong\>Issue: Admin Dashboard shows 500 Error\</strong\>\</summary\>
 
-## 🔑 Key Implementation Details
+  * **Cause:** The `is_admin()` function might be missing in Postgres.
+  * **Fix:** Re-run the SQL setup script specifically for the RLS policies section.
 
-### Auto-Generated Meter Numbers
-- Format: `MTR-XXXXXX` (zero-padded 6 digits)
-- Auto-incremented from highest existing number
-- Stored in `customer_info.meter_number` with UNIQUE constraint
-- Displayed in success modal after registration
-- Maximum capacity: 999,999 customers
+\</details\>
 
-### Tiered Bill Calculation
-The system uses a three-tier pricing structure:
-- **Tier 1**: 0-100 units at configurable rate
-- **Tier 2**: 101-300 units at configurable rate
-- **Tier 3**: 300+ units at configurable rate
-- Plus base fee (fixed monthly charge)
+\<details\>
+\<summary\>\<strong\>Issue: PDF Generation has dummy data\</strong\>\</summary\>
 
-Example calculation for 250 kWh:
-```
-Base fee: ₹50
-Tier 1 (0-100): 100 × ₹5.00 = ₹500
-Tier 2 (101-300): 150 × ₹7.50 = ₹1,125
-Total: ₹50 + ₹500 + ₹1,125 = ₹1,675
-```
+  * **Cause:** The user profile is missing address details.
+  * **Fix:** Go to Profile Settings and ensure all fields are filled before downloading.
 
-### PDF Bill Generation
-- Uses real customer data (NO dummy data)
-- Includes: name, address, meter number, bill details
-- Professional formatting with company branding
-- Downloads as `bill-{billId}.pdf`
-- Generated using html2pdf.js library
+\</details\>
 
-### Row-Level Security (RLS)
-- All tables protected with RLS policies
-- Users can only access their own data
-- Admins have full access via `is_admin()` SECURITY DEFINER function
-- Prevents infinite recursion errors
-
-## 🔒 Security Features
-
-- ✅ Supabase Authentication with email verification
-- ✅ Row-Level Security (RLS) on all database tables
-- ✅ Role-based access control (USER/ADMIN)
-- ✅ SECURITY DEFINER functions to prevent RLS recursion
-- ✅ Input validation and sanitization
-- ✅ Secure password handling via Supabase Auth
-- ✅ Protected admin routes
-
-## 📊 Reports & Analytics
-
-The admin portal includes comprehensive reporting:
-
-1. **Revenue Reports** - Monthly revenue, units consumed, fixed charges (CSV/PDF export)
-2. **Outstanding Bills** - All pending bills with customer details (CSV/PDF export)
-3. **User Activity** - All registered users with account status (CSV/PDF export)
-4. **Consumption History** - Complete meter reading history (CSV/PDF export)
-
-## 🎨 UI/UX Features
-
-- Responsive design (mobile, tablet, desktop)
-- Dark mode support
-- Professional color scheme
-- Smooth animations and transitions
-- Loading states and error handling
-- Toast notifications for user feedback
-- Modal dialogs for confirmations
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Issue: 500 Internal Server Error on admin login**
-- **Solution**: Ensure the `is_admin()` SECURITY DEFINER function is created. Run `clean-setup-FIXED.sql` again.
-
-**Issue: Meter number not showing after registration**
-- **Solution**: Check that `customer_info` table exists and the registration flow creates an entry.
-
-**Issue: PDF download shows dummy data**
-- **Solution**: Ensure customer profile is complete with address information in `customer_info` table.
-
-**Issue: Bills not calculating correctly**
-- **Solution**: Verify an active tariff plan exists in `tariff_plans` table with proper tier rates.
+-----
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow these steps:
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1.  Fork the Project
+2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the Branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
 
-## 📝 License
+-----
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## 📜 License
 
-## 📧 Contact
+Distributed under the **MIT License**. See `LICENSE` for more information.
 
-For questions or support, please open an issue on GitHub.
+-----
 
-## 🙏 Acknowledgments
 
-- [Supabase](https://supabase.com) - Backend infrastructure
-- [Tailwind CSS](https://tailwindcss.com) - CSS framework
-- [html2pdf.js](https://github.com/eKoopmans/html2pdf.js) - PDF generation
-- [Google Fonts](https://fonts.google.com) - Typography
+## 📬 Contact
+
+**Project Link:** [https://github.com/sudhanwa755/EBS](https://github.com/sudhanwa755/EBS)
+
+<div align="center">
+
+### Sudhanwa Kulkarni
+
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sudhanwalatur@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sudhanwa-kulkarni/)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sudhanwa755)
+
+</div>
+
+<br />
+<br />
 
 ---
 
-**Built with ❤️ using Vanilla JavaScript and Supabase**
+<div align="center">
+
+### ⭐️ Show your support ⭐️
+<p>If you found this project helpful, please give it a star!</p>
+
+<a href="https://github.com/sudhanwa755/EBS/stargazers">
+  <img src="https://img.shields.io/github/stars/sudhanwa755/EBS?style=social" alt="GitHub Stars">
+</a>
+
+<br />
+<br />
+
+<p>
+  Made with ❤️ and ☕ by <a href="https://github.com/sudhanwa755"><b>Sudhanwa Kulkarni</b></a>
+</p>
+
+<p style="font-size: 0.8rem; color: #888;">
+  © 2025 Electricity Billing System. All Rights Reserved.
+</p>
+
+</div>
+
+<p align="center">
+  <a href="#readme-top">⬆️ Back to Top</a>
+</p>
+```
