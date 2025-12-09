@@ -318,6 +318,10 @@ CREATE POLICY "Admins can delete profiles"
     ON public.profiles FOR DELETE 
     USING (public.is_admin());
 
+CREATE POLICY "Users can insert own profile" 
+    ON public.profiles FOR INSERT 
+    WITH CHECK (auth.uid() = id);
+
 -- STEP 18: BILLS policies
 CREATE POLICY "Users can view own bills" 
     ON public.bills FOR SELECT 
@@ -470,10 +474,6 @@ BEGIN
         'active'
     );
     RETURN NEW;
-EXCEPTION
-    WHEN others THEN
-        RAISE LOG 'Error creating profile: %', SQLERRM;
-        RETURN NEW;
 END;
 $$;
 

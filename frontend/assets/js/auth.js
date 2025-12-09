@@ -105,7 +105,6 @@ export const Auth = {
     register: async (userData) => {
         try {
             // Sign up with Supabase Auth
-            // The database trigger (handle_new_user) will automatically create the profile
             const { data, error } = await supabase.auth.signUp({
                 email: userData.email,
                 password: userData.password,
@@ -118,9 +117,22 @@ export const Auth = {
 
             if (error) throw error;
 
+            // Log full response for debugging when users don't appear in the dashboard
+            console.log('Supabase signUp response:', data);
+
+            // If no user object returned, fail with a clear message so callers can see the reason
+            if (!data || !data.user || !data.user.id) {
+                const resp = JSON.stringify(data || {});
+                throw new Error('Registration incomplete: Supabase did not return a user object. Response: ' + resp);
+            }
+
+            console.log('User signed up successfully:', data.user.id);
+
+            // We are now relying on the on_auth_user_created trigger to create the profile.
+
             return { success: true, user: data.user };
         } catch (error) {
-            if (error.message.includes('User already registered')) {
+            if (error.message.includes('User already registered') || error.message.includes('duplicate key value violates unique constraint')) {
                 throw new Error('This email is already registered. Please login instead.');
             }
             throw error;

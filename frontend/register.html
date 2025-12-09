@@ -231,10 +231,50 @@
         </div>
     </div>
 
+    <!-- Standalone Theme Toggle Script (runs before modules) -->
+    <script>
+            // Theme functionality - standalone, doesn't require modules
+            (function () {
+                const html = document.documentElement;
+                const themeKey = 'ebs_theme';
+
+                // Initialize theme from localStorage or system preference
+                function initTheme() {
+                    const savedTheme = localStorage.getItem(themeKey);
+                    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                        html.classList.add('dark');
+                    } else {
+                        html.classList.remove('dark');
+                    }
+                }
+
+                // Toggle theme
+                function toggleTheme() {
+                    if (html.classList.contains('dark')) {
+                        html.classList.remove('dark');
+                        localStorage.setItem(themeKey, 'light');
+                    } else {
+                        html.classList.add('dark');
+                        localStorage.setItem(themeKey, 'dark');
+                    }
+                }
+
+                // Initialize on load
+                initTheme();
+
+                // Add event listener when DOM is ready
+                document.addEventListener('DOMContentLoaded', function () {
+                    const themeToggle = document.getElementById('themeToggle');
+                    if (themeToggle) {
+                        themeToggle.addEventListener('click', toggleTheme);
+                    }
+                });
+            })();
+    </script>
+
     <script type="module">
         import { Auth } from './assets/js/auth.js';
         import { API } from './assets/js/api.js';
-        import { toggleTheme } from './assets/js/utils.js';
 
         const registerForm = document.getElementById('registerForm');
         const registerBtn = document.getElementById('registerBtn');
@@ -244,10 +284,6 @@
         const meterNumberModal = document.getElementById('meterNumberModal');
         const assignedMeterNumber = document.getElementById('assignedMeterNumber');
         const countdown = document.getElementById('countdown');
-        const themeToggle = document.getElementById('themeToggle');
-
-        // Theme toggle
-        themeToggle?.addEventListener('click', toggleTheme);
 
         registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -321,7 +357,27 @@
                 }
             } catch (error) {
                 console.error('Registration error:', error);
-                errorMessage.textContent = error.message || 'Registration failed';
+                console.error('Error details:', {
+                    message: error.message,
+                    code: error.code,
+                    status: error.status,
+                    details: error.details
+                });
+
+                let errorMsg = error.message || 'Registration failed';
+
+                // Check for common Supabase errors
+                if (error.message?.includes('Email not confirmed')) {
+                    errorMsg = 'Please check your email and confirm your account before logging in.';
+                } else if (error.message?.includes('User already registered')) {
+                    errorMsg = 'This email is already registered. Please login instead.';
+                } else if (error.message?.includes('Password should be at least')) {
+                    errorMsg = 'Password must be at least 6 characters long.';
+                } else if (error.message?.includes('Unable to validate email')) {
+                    errorMsg = 'Invalid email address format.';
+                }
+
+                errorMessage.textContent = errorMsg;
                 errorMessage.classList.remove('hidden');
                 registerBtn.disabled = false;
                 loader.classList.add('hidden');
