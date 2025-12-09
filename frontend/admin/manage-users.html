@@ -12,7 +12,15 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3b82f6',
+                        primary: '#7C3AED',
+                        'violet': {
+                            400: '#A78BFA',
+                            500: '#8B5CF6',
+                            600: '#7C3AED',
+                        },
+                        'purple': {
+                            600: '#9333EA',
+                        }
                     }
                 }
             }
@@ -27,9 +35,8 @@
     <div
         class="lg:hidden fixed w-full z-50 glass-card border-b border-slate-200 dark:border-slate-800 px-4 h-16 flex items-center justify-between">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">E</div>
-            <span class="font-bold text-xl">ElectroBill <span
-                    class="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full ml-1">Admin</span></span>
+            <span class="font-bold text-xl gradient-text-violet">ELECTROBILL</span> <span
+                class="text-xs bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 px-2 py-0.5 rounded-full ml-1">Admin</span>
         </div>
         <button id="mobileMenuBtn" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,10 +50,8 @@
         <aside id="sidebar"
             class="fixed inset-y-0 left-0 z-40 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 glass-card border-r border-slate-200 dark:border-slate-800 flex flex-col">
             <div class="h-16 flex items-center px-6 border-b border-slate-200 dark:border-slate-800">
-                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold mr-2">E
-                </div>
-                <span class="font-bold text-xl">ElectroBill <span
-                        class="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full ml-1 align-top">Admin</span></span>
+                <span class="font-bold text-xl gradient-text-violet">ELECTROBILL</span> <span
+                    class="text-xs bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 px-2 py-0.5 rounded-full ml-1 align-top">Admin</span>
             </div>
 
             <nav class="flex-1 px-4 py-6 space-y-2">
@@ -60,7 +65,7 @@
                     Dashboard
                 </a>
                 <a href="manage-users.html"
-                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium">
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-violet-600 dark:text-violet-400 font-medium">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
@@ -130,16 +135,34 @@
         <main class="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8">
             <header class="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h1 class="text-2xl font-bold">Manage Users</h1>
+                    <h1
+                        class="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 bg-clip-text text-transparent mb-2">
+                        Manage Users</h1>
                     <p class="text-slate-500 dark:text-slate-400">View and manage system users</p>
                 </div>
-                <button onclick="window.openCreateUserModal()"
-                    class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                    </svg>
-                    Create User
-                </button>
+                <div class="flex items-center gap-3">
+                    <button onclick="window.openCreateUserModal()"
+                        class="px-4 py-2 rounded-lg gradient-violet hover:scale-[1.02] text-white font-medium transition-all duration-300 shadow-lg glow-violet-hover shimmer-effect relative overflow-hidden flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4">
+                            </path>
+                        </svg>
+                        Create User
+                    </button>
+                    <button id="themeToggle"
+                        class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700">
+                        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                            </path>
+                        </svg>
+                        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
             </header>
 
             <!-- Users Table Section -->
@@ -147,7 +170,7 @@
                 <div
                     class="p-4 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50 dark:bg-slate-800/50">
                     <h3 class="text-base font-bold flex items-center gap-2">
-                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
                             </path>
@@ -156,7 +179,7 @@
                     </h3>
                     <div class="relative">
                         <input type="text" id="userSearch" placeholder="Search users..."
-                            class="pl-9 pr-4 py-1.5 text-sm rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-64 transition-all">
+                            class="pl-9 pr-4 py-1.5 text-sm rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500 w-full sm:w-64 transition-all">
                         <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 transform -translate-y-1/2"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -205,17 +228,17 @@
                             <div>
                                 <label class="block text-sm font-medium mb-1">Full Name</label>
                                 <input type="text" id="editName" required
-                                    class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-1">Email</label>
                                 <input type="email" id="editEmail" disabled
-                                    class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 opacity-60 cursor-not-allowed">
+                                    class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500 opacity-60 cursor-not-allowed">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-1">Role</label>
                                 <select id="editRole"
-                                    class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500">
                                     <option value="USER">User</option>
                                     <option value="ADMIN">Admin</option>
                                 </select>
@@ -223,7 +246,7 @@
                             <div>
                                 <label class="block text-sm font-medium mb-1">Status</label>
                                 <select id="editStatus"
-                                    class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500">
                                     <option value="active">Active</option>
                                     <option value="inactive">Inactive</option>
                                 </select>
@@ -234,7 +257,7 @@
                                     Cancel
                                 </button>
                                 <button type="submit"
-                                    class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors">
+                                    class="px-4 py-2 rounded-lg gradient-violet hover:scale-[1.02] text-white font-medium transition-all duration-300 shadow-lg glow-violet-hover shimmer-effect relative overflow-hidden">
                                     Save Changes
                                 </button>
                             </div>
@@ -248,6 +271,7 @@
     <!-- Overlay for mobile sidebar -->
     <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-30 hidden lg:hidden glass-card backdrop-blur-sm"></div>
 
+    <script type="module" src="../assets/js/admin.js"></script>
     <script type="module" src="../assets/js/admin-users.js"></script>
 </body>
 

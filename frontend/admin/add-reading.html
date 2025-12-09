@@ -12,7 +12,15 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3b82f6',
+                        primary: '#7C3AED',
+                        'violet': {
+                            400: '#A78BFA',
+                            500: '#8B5CF6',
+                            600: '#7C3AED',
+                        },
+                        'purple': {
+                            600: '#9333EA',
+                        }
                     }
                 }
             }
@@ -26,9 +34,8 @@
     <div
         class="lg:hidden fixed w-full z-50 glass-card border-b border-slate-200 dark:border-slate-800 px-4 h-16 flex items-center justify-between">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">E</div>
-            <span class="font-bold text-xl">ElectroBill <span
-                    class="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full ml-1">Admin</span></span>
+            <span class="font-bold text-xl gradient-text-violet">ELECTROBILL</span> <span
+                class="text-xs bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 px-2 py-0.5 rounded-full ml-1">Admin</span>
         </div>
         <button id="mobileMenuBtn" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,10 +49,8 @@
         <aside id="sidebar"
             class="fixed inset-y-0 left-0 z-40 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 glass-card border-r border-slate-200 dark:border-slate-800 flex flex-col">
             <div class="h-16 flex items-center px-6 border-b border-slate-200 dark:border-slate-800">
-                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold mr-2">E
-                </div>
-                <span class="font-bold text-xl">ElectroBill <span
-                        class="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full ml-1 align-top">Admin</span></span>
+                <span class="font-bold text-xl gradient-text-violet">ELECTROBILL</span> <span
+                    class="text-xs bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 px-2 py-0.5 rounded-full ml-1 align-top">Admin</span>
             </div>
 
             <nav class="flex-1 px-4 py-6 space-y-2">
@@ -86,7 +91,7 @@
                     Tariffs
                 </a>
                 <a href="add-reading.html"
-                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium">
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-violet-600 dark:text-violet-400 font-medium">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -129,7 +134,9 @@
         <main class="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8">
             <header class="mb-8 flex justify-between items-center">
                 <div>
-                    <h1 class="text-2xl font-bold">Add Meter Reading</h1>
+                    <h1
+                        class="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 bg-clip-text text-transparent mb-2">
+                        Add Meter Reading</h1>
                     <p class="text-slate-500 dark:text-slate-400">Select a user to add a new reading</p>
                 </div>
                 <button id="themeToggle"
@@ -151,7 +158,7 @@
                 <div
                     class="p-4 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50 dark:bg-slate-800/50">
                     <h3 class="text-base font-bold flex items-center gap-2">
-                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
                             </path>
@@ -160,7 +167,7 @@
                     </h3>
                     <div class="relative">
                         <input type="text" id="userSearch" placeholder="Search users..."
-                            class="pl-9 pr-4 py-1.5 text-sm rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-64 transition-all">
+                            class="pl-9 pr-4 py-1.5 text-sm rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500 w-full sm:w-64 transition-all">
                         <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 transform -translate-y-1/2"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -203,7 +210,7 @@
                 </button>
 
                 <h2 class="text-xl font-bold mb-6">Add Reading for <span id="modalUserName"
-                        class="text-blue-600">User</span></h2>
+                        class="text-violet-600">User</span></h2>
 
                 <form id="readingForm" class="space-y-4">
                     <input type="hidden" id="modalUserId">
@@ -211,14 +218,14 @@
                     <div>
                         <label class="block text-sm font-medium mb-1 dark:text-white">Reading Month</label>
                         <input type="month" id="readingMonth" required
-                            class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white">
+                            class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white">
                         <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Month for which reading is taken</p>
                     </div>
 
                     <div>
                         <label class="block text-sm font-medium mb-1 dark:text-white">Billing Month</label>
                         <input type="month" id="billingMonth" required
-                            class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white">
+                            class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white">
                         <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Month when bill will be generated</p>
                     </div>
 
@@ -226,13 +233,13 @@
                         <div>
                             <label class="block text-sm font-medium mb-1 dark:text-white">Previous Reading</label>
                             <input type="number" id="prevReading" required step="0.01"
-                                class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
+                                class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white"
                                 placeholder="0.00">
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1 dark:text-white">Current Reading</label>
                             <input type="number" id="currReading" required step="0.01"
-                                class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
+                                class="w-full px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white"
                                 placeholder="0.00">
                         </div>
                     </div>
@@ -247,7 +254,7 @@
                     </div>
 
                     <button type="submit"
-                        class="w-full px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors shadow-lg shadow-blue-500/30 mt-4">
+                        class="w-full px-6 py-3 rounded-xl gradient-violet hover:scale-[1.02] text-white font-medium transition-all duration-300 shadow-lg glow-violet-hover shimmer-effect relative overflow-hidden mt-4">
                         Save Reading
                     </button>
                 </form>

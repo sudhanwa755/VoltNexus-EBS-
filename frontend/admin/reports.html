@@ -12,7 +12,15 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3b82f6',
+                        primary: '#7C3AED',
+                        'violet': {
+                            400: '#A78BFA',
+                            500: '#8B5CF6',
+                            600: '#7C3AED',
+                        },
+                        'purple': {
+                            600: '#9333EA',
+                        }
                     }
                 }
             }
@@ -27,9 +35,8 @@
     <div
         class="lg:hidden fixed w-full z-50 glass-card border-b border-slate-200 dark:border-slate-800 px-4 h-16 flex items-center justify-between">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">E</div>
-            <span class="font-bold text-xl">ElectroBill <span
-                    class="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full ml-1">Admin</span></span>
+            <span class="font-bold text-xl gradient-text-violet">ELECTROBILL</span> <span
+                class="text-xs bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 px-2 py-0.5 rounded-full ml-1">Admin</span>
         </div>
         <button id="mobileMenuBtn" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,10 +50,8 @@
         <aside id="sidebar"
             class="fixed inset-y-0 left-0 z-40 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 glass-card border-r border-slate-200 dark:border-slate-800 flex flex-col">
             <div class="h-16 flex items-center px-6 border-b border-slate-200 dark:border-slate-800">
-                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold mr-2">E
-                </div>
-                <span class="font-bold text-xl">ElectroBill <span
-                        class="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full ml-1 align-top">Admin</span></span>
+                <span class="font-bold text-xl gradient-text-violet">ELECTROBILL</span> <span
+                    class="text-xs bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 px-2 py-0.5 rounded-full ml-1 align-top">Admin</span>
             </div>
 
             <nav class="flex-1 px-4 py-6 space-y-2">
@@ -95,7 +100,7 @@
                     Add Reading
                 </a>
                 <a href="reports.html"
-                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium">
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-violet-600 dark:text-violet-400 font-medium">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V7a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
@@ -126,95 +131,112 @@
             </div>
         </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8">
-        <header class="mb-8">
-            <h1 class="text-2xl font-bold">Reports</h1>
-            <p class="text-slate-500 dark:text-slate-400">Generate and download system reports</p>
-        </header>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Report Card 1 -->
-            <div class="glass-card p-6 rounded-2xl">
-                <div
-                    class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-blue-600 mb-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- Main Content -->
+        <main class="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8">
+            <header class="mb-8 flex items-center justify-between">
+                <div>
+                    <h1
+                        class="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 bg-clip-text text-transparent mb-2">
+                        Reports</h1>
+                    <p class="text-slate-500 dark:text-slate-400">Generate and download system reports</p>
+                </div>
+                <button id="themeToggle"
+                    class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700">
+                    <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
                         </path>
                     </svg>
-                </div>
-                <h3 class="text-lg font-bold mb-2">Revenue Report</h3>
-                <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Monthly revenue breakdown and analysis.
-                </p>
-                <div class="flex gap-2">
-                    <button data-report="revenue" data-format="pdf"
-                        class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">PDF</button>
-                    <button data-report="revenue" data-format="csv"
-                        class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">CSV</button>
-                </div>
-            </div>
-
-            <!-- Report Card 2 -->
-            <div class="glass-card p-6 rounded-2xl">
-                <div
-                    class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center text-purple-600 mb-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
                         </path>
                     </svg>
-                </div>
-                <h3 class="text-lg font-bold mb-2">User Activity</h3>
-                <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">New registrations and active user stats.
-                </p>
-                <div class="flex gap-2">
-                    <button data-report="user-activity" data-format="pdf"
-                        class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">PDF</button>
-                    <button data-report="user-activity" data-format="csv"
-                        class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">CSV</button>
-                </div>
-            </div>
+                </button>
+            </header>
 
-            <!-- Report Card 3 -->
-            <div class="glass-card p-6 rounded-2xl">
-                <div
-                    class="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center text-red-600 mb-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Report Card 1 -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <div
+                        class="w-12 h-12 bg-violet-100 dark:bg-violet-900/30 rounded-xl flex items-center justify-center text-violet-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Revenue Report</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Monthly revenue breakdown and analysis.
+                    </p>
+                    <div class="flex gap-2">
+                        <button data-report="revenue" data-format="pdf"
+                            class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">PDF</button>
+                        <button data-report="revenue" data-format="csv"
+                            class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">CSV</button>
+                    </div>
                 </div>
-                <h3 class="text-lg font-bold mb-2">Outstanding Bills</h3>
-                <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">List of all unpaid and overdue bills.</p>
-                <div class="flex gap-2">
-                    <button data-report="outstanding-bills" data-format="pdf"
-                        class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">PDF</button>
-                    <button data-report="outstanding-bills" data-format="csv"
-                        class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">CSV</button>
+
+                <!-- Report Card 2 -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <div
+                        class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center text-purple-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">User Activity</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">New registrations and active user stats.
+                    </p>
+                    <div class="flex gap-2">
+                        <button data-report="user-activity" data-format="pdf"
+                            class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">PDF</button>
+                        <button data-report="user-activity" data-format="csv"
+                            class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">CSV</button>
+                    </div>
+                </div>
+
+                <!-- Report Card 3 -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <div
+                        class="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center text-red-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Outstanding Bills</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">List of all unpaid and overdue bills.</p>
+                    <div class="flex gap-2">
+                        <button data-report="outstanding-bills" data-format="pdf"
+                            class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">PDF</button>
+                        <button data-report="outstanding-bills" data-format="csv"
+                            class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">CSV</button>
+                    </div>
+                </div>
+                <!-- Report Card 4 -->
+                <div class="glass-card p-6 rounded-2xl">
+                    <div
+                        class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900/30 rounded-xl flex items-center justify-center text-yellow-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">All Readings</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Complete list of all meter readings.</p>
+                    <div class="flex gap-2">
+                        <button data-report="all-readings" data-format="pdf"
+                            class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">PDF</button>
+                        <button data-report="all-readings" data-format="csv"
+                            class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">CSV</button>
+                    </div>
                 </div>
             </div>
-            <!-- Report Card 4 -->
-            <div class="glass-card p-6 rounded-2xl">
-                <div
-                    class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900/30 rounded-xl flex items-center justify-center text-yellow-600 mb-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
-                        </path>
-                    </svg>
-                </div>
-                <h3 class="text-lg font-bold mb-2">All Readings</h3>
-                <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Complete list of all meter readings.</p>
-                <div class="flex gap-2">
-                    <button data-report="all-readings" data-format="pdf"
-                        class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">PDF</button>
-                    <button data-report="all-readings" data-format="csv"
-                        class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium">CSV</button>
-                </div>
-            </div>
-        </div>
-    </main>
+        </main>
     </div>
 
     <!-- Overlay for mobile sidebar -->

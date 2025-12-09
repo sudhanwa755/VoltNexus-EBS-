@@ -12,7 +12,15 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3b82f6',
+                        primary: '#7C3AED',
+                        'violet': {
+                            400: '#A78BFA',
+                            500: '#8B5CF6',
+                            600: '#7C3AED',
+                        },
+                        'purple': {
+                            600: '#9333EA',
+                        }
                     }
                 }
             }
@@ -22,11 +30,18 @@
 </head>
 
 <body
-    class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex items-center justify-center p-4 transition-colors duration-300">
+    class="bg-gradient-to-br from-violet-50 via-slate-50 to-purple-50 dark:from-slate-950 dark:via-slate-900 dark:to-violet-950 text-slate-800 dark:text-slate-200 min-h-screen flex items-center justify-center p-4 transition-colors duration-300 relative overflow-hidden">
+
+    <!-- Animated Background Gradient Orbs -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-violet-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
+            style="animation-delay: 1s;"></div>
+    </div>
 
     <!-- Theme Toggle Button -->
     <button id="themeToggle"
-        class="fixed top-4 right-4 p-3 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 hover:scale-110 transition-all duration-300 z-50">
+        class="fixed top-4 right-4 p-3 rounded-full glass-card hover:scale-110 transition-all duration-300 z-50 glow-violet-hover">
         <svg class="w-6 h-6 dark:hidden text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
@@ -39,13 +54,14 @@
         </svg>
     </button>
 
-    <div class="glass-card w-full max-w-md p-8 rounded-2xl shadow-2xl">
+    <div class="glass-card-premium w-full max-w-md p-8 rounded-3xl shadow-2xl relative z-10">
         <div class="text-center mb-8">
-            <div
-                class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
-                E</div>
-            <h1 class="text-2xl font-bold">Welcome Back</h1>
-            <p class="text-slate-500 dark:text-slate-400">Sign in to manage your electricity account</p>
+            <!-- Logo -->
+            <h1 class="text-3xl font-bold gradient-text-violet mb-4">ELECTROBILL</h1>
+            <h1
+                class="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 bg-clip-text text-transparent mb-2">
+                Welcome Back</h1>
+            <p class="text-slate-600 dark:text-slate-400">Sign in to manage your electricity account</p>
         </div>
 
         <form id="loginForm" class="space-y-6">
@@ -74,8 +90,7 @@
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7 1.274-4.057 5.064-7 9.542-7 .847 0 1.67.124 2.454.36l-1.83 1.83A3.004 3.004 0 0012 15a3 3 0 10-3-3l-1.83-1.83A9.953 9.953 0 002.458 12c1.274 4.057 5.064 7 9.542 7a9.953 9.953 0 004.32-.825l-1.47-1.47A4.98 4.98 0 0113.875 18.825zM16.5 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 3l18 18" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3l18 18" />
                         </svg>
                     </button>
                 </div>
@@ -86,13 +101,26 @@
                     <input type="checkbox" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500">
                     <span>Remember me</span>
                 </label>
-                <a href="#" class="text-blue-600 hover:text-blue-500">Forgot password?</a>
+                <a href="#"
+                    class="text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 font-medium transition-colors">Forgot
+                    password?</a>
             </div>
 
             <button type="submit" id="loginBtn"
-                class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all transform hover:scale-[1.02] shadow-lg shadow-blue-500/30 flex justify-center items-center gap-2">
-                <span>Sign In</span>
-                <div class="loader hidden border-white border-t-transparent w-5 h-5"></div>
+                class="group relative w-full py-4 px-6 rounded-xl gradient-violet hover:shadow-2xl text-white font-semibold shadow-lg glow-violet-hover hover:scale-[1.02] transition-all duration-300 overflow-hidden flex justify-center items-center gap-2">
+
+                <!-- Shimmer effect -->
+                <div
+                    class="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700">
+                </div>
+
+                <span class="relative z-10">Sign In</span>
+                <svg class="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6">
+                    </path>
+                </svg>
+                <div class="loader hidden border-white border-t-transparent w-5 h-5 relative z-10"></div>
             </button>
         </form>
 
@@ -103,7 +131,9 @@
 
         <div class="mt-8 text-center text-sm text-slate-500 dark:text-slate-400">
             Don't have an account?
-            <a href="register.html" class="text-blue-600 hover:text-blue-500 font-medium">Create account</a>
+            <a href="register.html"
+                class="text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 font-semibold transition-colors">Create
+                account</a>
         </div>
     </div>
 
@@ -114,7 +144,7 @@
 
         // Initialize theme from localStorage or system preference
         const initTheme = () => {
-            const savedTheme = localStorage.getItem('theme');
+            const savedTheme = localStorage.getItem('ebs_theme');
             if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 html.classList.add('dark');
             }
@@ -124,10 +154,10 @@
         themeToggle.addEventListener('click', () => {
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
+                localStorage.setItem('ebs_theme', 'light');
             } else {
                 html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
+                localStorage.setItem('ebs_theme', 'dark');
             }
         });
 

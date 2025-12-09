@@ -12,7 +12,15 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3b82f6',
+                        primary: '#7C3AED',
+                        'violet': {
+                            400: '#A78BFA',
+                            500: '#8B5CF6',
+                            600: '#7C3AED',
+                        },
+                        'purple': {
+                            600: '#9333EA',
+                        }
                     }
                 }
             }
@@ -21,14 +29,26 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+<body
+    class="bg-gradient-to-br from-violet-50 via-slate-50 to-purple-50 dark:from-slate-950 dark:via-slate-900 dark:to-violet-950 text-slate-800 dark:text-slate-200 min-h-screen transition-colors duration-300 relative overflow-x-hidden">
+
+    <!-- Animated Background Gradient Orbs -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none fixed">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
+            style="animation-delay: 2s;"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-violet-500/20 rounded-full blur-3xl animate-pulse"
+            style="animation-delay: 1s;"></div>
+    </div>
+
+
 
     <!-- Mobile Header -->
     <div
         class="lg:hidden fixed w-full z-50 glass-card border-b border-slate-200 dark:border-slate-800 px-4 h-16 flex items-center justify-between">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">E</div>
-            <span class="font-bold text-xl">ElectroBill</span>
+            <span
+                class="font-bold text-xl bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">ELECTROBILL</span>
         </div>
         <button id="mobileMenuBtn" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -37,14 +57,13 @@
         </button>
     </div>
 
-    <div class="flex min-h-screen pt-16 lg:pt-0">
+    <div class="flex min-h-screen pt-16 lg:pt-0 relative z-10">
         <!-- Sidebar -->
         <aside id="sidebar"
-            class="fixed inset-y-0 left-0 z-40 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 glass-card border-r border-slate-200 dark:border-slate-800 flex flex-col">
+            class="fixed inset-y-0 left-0 z-40 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 glass-card-premium border-r border-slate-200 dark:border-slate-800 flex flex-col">
             <div class="h-16 flex items-center px-6 border-b border-slate-200 dark:border-slate-800">
-                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold mr-2">E
-                </div>
-                <span class="font-bold text-xl">ElectroBill</span>
+                <span
+                    class="font-bold text-xl bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">ELECTROBILL</span>
             </div>
 
             <nav class="flex-1 px-4 py-6 space-y-2">
@@ -67,7 +86,7 @@
                     My Bills
                 </a>
                 <a href="profile.html"
-                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium">
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-violet-600 dark:text-violet-400 font-medium ring-1 ring-violet-200 dark:ring-violet-700/50">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
@@ -78,7 +97,7 @@
 
             <div class="p-4 border-t border-slate-200 dark:border-slate-800">
                 <div class="flex items-center gap-3 px-4 py-3 mb-2">
-                    <div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold text-slate-600 dark:text-slate-300"
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center font-bold text-white shadow-lg"
                         id="userInitials">U</div>
                     <div class="flex-1 min-w-0">
                         <p class="text-sm font-medium truncate" id="userName">User Name</p>
@@ -99,118 +118,165 @@
 
         <!-- Main Content -->
         <main class="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8">
-            <header class="mb-8">
-                <h1 class="text-2xl font-bold">Profile Settings</h1>
-                <p class="text-slate-500 dark:text-slate-400">Manage your account information</p>
+            <header class="flex items-center justify-between mb-8 relative z-20">
+                <div>
+                    <h1
+                        class="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 bg-clip-text text-transparent mb-2">
+                        Profile Settings</h1>
+                    <p class="text-slate-500 dark:text-slate-400">Manage your account information and preferences</p>
+                </div>
+                <button id="themeToggle"
+                    class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700">
+                    <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                        </path>
+                    </svg>
+                </button>
             </header>
 
-            <div class="max-w-2xl">
+            <div class="max-w-3xl">
                 <!-- Profile Information Card -->
-                <div class="glass-card rounded-2xl p-8 mb-8">
-                    <div class="flex items-center gap-6 mb-8">
-                        <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-3xl"
+                <div class="glass-card-premium rounded-3xl p-8 mb-8 relative overflow-hidden group">
+                    <!-- Card Glow Effect -->
+                    <div
+                        class="absolute -top-24 -right-24 w-48 h-48 bg-violet-500/10 rounded-full blur-3xl group-hover:bg-violet-500/20 transition-all duration-500">
+                    </div>
+
+                    <div class="flex items-center gap-6 mb-8 relative z-10">
+                        <div class="w-24 h-24 bg-gradient-to-br from-blue-500 via-purple-600 to-violet-600 rounded-full flex items-center justify-center text-white font-bold text-4xl shadow-xl ring-4 ring-white/20"
                             id="profileInitials">U</div>
                         <div>
-                            <h2 class="text-xl font-bold" id="profileName">User Name</h2>
-                            <p class="text-slate-500 dark:text-slate-400" id="profileRole">Customer</p>
+                            <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100" id="profileName">User Name
+                            </h2>
+                            <span
+                                class="inline-block mt-1 px-3 py-1 rounded-full text-xs font-medium bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300"
+                                id="profileRole">Customer</span>
                         </div>
                     </div>
 
                     <form id="profileForm" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-medium mb-2">Full Name</label>
+                                <label class="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-300">Full
+                                    Name</label>
                                 <input type="text" id="inputName"
-                                    class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
+                                    class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white transition-all shadow-sm"
                                     value="User Name">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium mb-2">Email Address</label>
+                                <label class="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-300">Email
+                                    Address</label>
                                 <input type="email" id="inputEmail"
-                                    class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white opacity-50 cursor-not-allowed"
+                                    class="w-full px-4 py-3 rounded-lg bg-slate-100/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white opacity-70 cursor-not-allowed"
                                     value="user@example.com" disabled>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium mb-2">Mobile Number</label>
+                                <label class="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-300">Mobile
+                                    Number</label>
                                 <input type="tel" id="inputMobile"
-                                    class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
+                                    class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white transition-all shadow-sm"
                                     placeholder="+91 98765 43210">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium mb-2">Phone Number</label>
+                                <label class="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-300">Phone
+                                    Number</label>
                                 <input type="tel" id="inputPhone"
-                                    class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
+                                    class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white transition-all shadow-sm"
                                     placeholder="Optional">
                             </div>
                             <div class="md:col-span-2">
-                                <label class="block text-sm font-medium mb-2">Street Address</label>
+                                <label class="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-300">Street
+                                    Address</label>
                                 <input type="text" id="inputStreet"
-                                    class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
+                                    class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white transition-all shadow-sm"
                                     placeholder="123, Green Street">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium mb-2">City</label>
+                                <label
+                                    class="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-300">City</label>
                                 <input type="text" id="inputCity"
-                                    class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
+                                    class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white transition-all shadow-sm"
                                     placeholder="Enter city">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium mb-2">State/Province</label>
+                                <label
+                                    class="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-300">State/Province</label>
                                 <input type="text" id="inputState"
-                                    class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
+                                    class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white transition-all shadow-sm"
                                     placeholder="Enter state/province">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium mb-2">Postal Code</label>
+                                <label class="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-300">Postal
+                                    Code</label>
                                 <input type="text" id="inputPostal"
-                                    class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
+                                    class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white transition-all shadow-sm"
                                     placeholder="Enter postal code">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium mb-2">Country</label>
+                                <label
+                                    class="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-300">Country</label>
                                 <input type="text" id="inputCountry"
-                                    class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
+                                    class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white transition-all shadow-sm"
                                     placeholder="India">
                             </div>
                             <div class="md:col-span-2">
-                                <label class="block text-sm font-medium mb-2">
+                                <label class="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-300">
                                     Meter Number
                                     <span class="text-xs text-slate-500 dark:text-slate-400 font-normal ml-2">
                                         (Auto-assigned by system)
                                     </span>
                                 </label>
-                                <input type="text" id="inputMeter" readonly
-                                    class="w-full px-4 py-3 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400 cursor-not-allowed focus:outline-none"
-                                    placeholder="Will be auto-assigned">
+                                <div class="relative">
+                                    <input type="text" id="inputMeter" readonly
+                                        class="w-full px-4 py-3 rounded-lg bg-slate-100/50 dark:bg-slate-900/50 border border-slate-300 dark:border-slate-600/50 text-slate-600 dark:text-slate-400 cursor-not-allowed focus:outline-none"
+                                        placeholder="Will be auto-assigned">
+                                    <div class="absolute right-3 top-3 text-slate-400">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                </div>
                                 <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                                    🔒 Meter numbers are automatically generated and cannot be changed
+                                    Meter numbers are automatically generated and cannot be changed
                                 </p>
                             </div>
                         </div>
 
                         <div class="pt-6 border-t border-slate-200 dark:border-slate-700">
                             <button type="button" id="saveProfileBtn"
-                                class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium transition-colors shadow-lg shadow-blue-500/30">
-                                Save Profile
+                                class="px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 hover:scale-[1.02] text-white font-bold tracking-wide transition-all duration-300 shadow-lg glow-violet-hover shimmer-effect relative overflow-hidden">
+                                Save Profile Settings
                             </button>
                         </div>
                     </form>
                 </div>
 
                 <!-- Consumption Alert Settings Card -->
-                <div class="glass-card rounded-2xl p-8">
-                    <div class="mb-6">
+                <div class="glass-card-premium rounded-3xl p-8 mb-8 relative overflow-hidden group">
+                    <div
+                        class="absolute -top-24 -left-24 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-all duration-500">
+                    </div>
+
+                    <div class="mb-6 relative z-10">
                         <h3 class="text-xl font-bold mb-2">Consumption Alert Settings</h3>
                         <p class="text-slate-500 dark:text-slate-400">Set your monthly consumption limit and receive
                             alerts when exceeded</p>
                     </div>
 
-                    <form id="consumptionLimitForm" class="space-y-6">
+                    <form id="consumptionLimitForm" class="space-y-6 relative z-10">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-medium mb-2">Monthly Consumption Limit (kWh)</label>
                                 <input type="number" id="consumptionLimit" min="0" step="1"
-                                    class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
+                                    class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:text-white"
                                     placeholder="e.g., 500">
                                 <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Leave empty to disable alerts
                                 </p>
@@ -218,7 +284,7 @@
                             <div>
                                 <label class="block text-sm font-medium mb-2">Alert Threshold (%)</label>
                                 <input type="number" id="alertThreshold" min="50" max="100" step="5" value="80"
-                                    class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
+                                    class="w-full px-4 py-3 rounded-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:text-white"
                                     placeholder="e.g., 80">
                                 <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Alert when usage reaches this
                                     %</p>
@@ -228,12 +294,12 @@
                                 <div class="space-y-3">
                                     <div class="flex items-center gap-3">
                                         <input type="checkbox" id="emailAlert" checked
-                                            class="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 dark:bg-slate-700">
+                                            class="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-violet-600 focus:ring-violet-500 dark:bg-slate-700">
                                         <label for="emailAlert" class="text-sm">Send email notifications</label>
                                     </div>
                                     <div class="flex items-center gap-3">
                                         <input type="checkbox" id="smsAlert"
-                                            class="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 dark:bg-slate-700">
+                                            class="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-violet-600 focus:ring-violet-500 dark:bg-slate-700">
                                         <label for="smsAlert" class="text-sm">Send SMS notifications (Optional)</label>
                                     </div>
                                 </div>
@@ -242,11 +308,11 @@
 
                         <div class="pt-6 border-t border-slate-200 dark:border-slate-700 flex gap-3">
                             <button type="button" id="saveLimitBtn"
-                                class="px-6 py-3 rounded-xl bg-green-600 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-700 text-white font-medium transition-colors shadow-lg shadow-green-500/30">
+                                class="px-6 py-3 rounded-xl gradient-emerald hover:scale-[1.02] text-white font-medium transition-all duration-300 shadow-lg glow-emerald shimmer-effect relative overflow-hidden">
                                 Save Consumption Limit
                             </button>
                             <button type="button" id="clearLimitBtn"
-                                class="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700 text-white font-medium transition-colors shadow-lg shadow-red-500/30">
+                                class="px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:scale-[1.02] text-white font-medium transition-all duration-300 shadow-lg shadow-red-500/30 shimmer-effect relative overflow-hidden">
                                 Clear Limit
                             </button>
                         </div>
@@ -254,8 +320,8 @@
 
                     <!-- Current Limit Display -->
                     <div id="currentLimitDisplay"
-                        class="mt-6 p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 hidden">
-                        <p class="text-sm font-medium text-blue-600 dark:text-blue-400">
+                        class="mt-6 p-4 rounded-lg bg-violet-50 dark:bg-violet-900/20 border border-violet-200 dark:border-violet-800 hidden">
+                        <p class="text-sm font-medium text-violet-600 dark:text-violet-400">
                             Current Limit: <span id="currentLimitValue">Not set</span> kWh (Alert at <span
                                 id="currentThresholdValue">80</span>%)
                         </p>
@@ -267,6 +333,33 @@
 
     <!-- Overlay for mobile sidebar -->
     <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-30 hidden lg:hidden glass-card backdrop-blur-sm"></div>
+
+    <script>
+            // Theme Toggle Logic
+            (function () {
+                const html = document.documentElement;
+                const themeToggle = document.getElementById('themeToggle');
+
+                // Initialize
+                const savedTheme = localStorage.getItem('ebs_theme');
+                if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    html.classList.add('dark');
+                }
+
+                // Toggle
+                if (themeToggle) {
+                    themeToggle.addEventListener('click', () => {
+                        if (html.classList.contains('dark')) {
+                            html.classList.remove('dark');
+                            localStorage.setItem('ebs_theme', 'light');
+                        } else {
+                            html.classList.add('dark');
+                            localStorage.setItem('ebs_theme', 'dark');
+                        }
+                    });
+                }
+            })();
+    </script>
 
     <script type="module" src="assets/js/profile.js"></script>
 </body>

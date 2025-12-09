@@ -12,7 +12,15 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3b82f6',
+                        primary: '#7C3AED',
+                        'violet': {
+                            400: '#A78BFA',
+                            500: '#8B5CF6',
+                            600: '#7C3AED',
+                        },
+                        'purple': {
+                            600: '#9333EA',
+                        }
                     }
                 }
             }
@@ -26,9 +34,8 @@
     <div
         class="lg:hidden fixed w-full z-50 glass-card border-b border-slate-200 dark:border-slate-800 px-4 h-16 flex items-center justify-between">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">E</div>
-            <span class="font-bold text-xl">ElectroBill <span
-                    class="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full ml-1">Admin</span></span>
+            <span class="font-bold text-xl gradient-text-violet">ELECTROBILL</span> <span
+                class="text-xs bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 px-2 py-0.5 rounded-full ml-1">Admin</span>
         </div>
         <button id="mobileMenuBtn" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,10 +49,8 @@
         <aside id="sidebar"
             class="fixed inset-y-0 left-0 z-40 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 glass-card border-r border-slate-200 dark:border-slate-800 flex flex-col">
             <div class="h-16 flex items-center px-6 border-b border-slate-200 dark:border-slate-800">
-                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold mr-2">E
-                </div>
-                <span class="font-bold text-xl">ElectroBill <span
-                        class="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full ml-1 align-top">Admin</span></span>
+                <span class="font-bold text-xl gradient-text-violet">ELECTROBILL</span> <span
+                    class="text-xs bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 px-2 py-0.5 rounded-full ml-1 align-top">Admin</span>
             </div>
 
             <nav class="flex-1 px-4 py-6 space-y-2">
@@ -77,7 +82,7 @@
                     Manage Bills
                 </a>
                 <a href="tariffs.html"
-                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium">
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-violet-600 dark:text-violet-400 font-medium">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
@@ -129,20 +134,21 @@
         <main class="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8">
             <header class="mb-8 flex items-center justify-between">
                 <div>
-                    <h1 class="text-2xl font-bold">Manage Tariffs</h1>
+                    <h1
+                        class="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 bg-clip-text text-transparent mb-2">
+                        Manage Tariffs</h1>
                     <p class="text-slate-500 dark:text-slate-400">Configure electricity rates and slabs</p>
                 </div>
-                <button onclick="toggleTheme()"
-                    class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                    title="Toggle theme">
-                    <svg class="w-6 h-6 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
-                        </path>
-                    </svg>
-                    <svg class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button id="themeToggle"
+                    class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700">
+                    <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
                         </path>
                     </svg>
                 </button>
@@ -159,7 +165,7 @@
                                     <span
                                         class="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-500">₹</span>
                                     <input type="number" id="slab1" step="0.01" value="5.00"
-                                        class="w-full pl-8 pr-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white">
+                                        class="w-full pl-8 pr-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white">
                                 </div>
                             </div>
                             <div>
@@ -168,7 +174,7 @@
                                     <span
                                         class="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-500">₹</span>
                                     <input type="number" id="slab2" step="0.01" value="7.50"
-                                        class="w-full pl-8 pr-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white">
+                                        class="w-full pl-8 pr-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white">
                                 </div>
                             </div>
                             <div>
@@ -177,7 +183,7 @@
                                     <span
                                         class="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-500">₹</span>
                                     <input type="number" id="slab3" step="0.01" value="9.00"
-                                        class="w-full pl-8 pr-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white">
+                                        class="w-full pl-8 pr-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white">
                                 </div>
                             </div>
                             <div>
@@ -186,7 +192,7 @@
                                     <span
                                         class="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-500">₹</span>
                                     <input type="number" id="fixedCharge" step="0.01" value="50.00"
-                                        class="w-full pl-8 pr-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white">
+                                        class="w-full pl-8 pr-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:text-white">
                                 </div>
                             </div>
                             <div class="md:col-span-2">
@@ -200,7 +206,7 @@
 
                         <div class="pt-6 border-t border-slate-200 dark:border-slate-700 flex justify-end">
                             <button type="submit"
-                                class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors shadow-lg shadow-blue-500/30">
+                                class="px-6 py-3 rounded-xl gradient-violet hover:scale-[1.02] text-white font-medium transition-all duration-300 shadow-lg glow-violet-hover shimmer-effect relative overflow-hidden">
                                 Update Tariffs
                             </button>
                         </div>
@@ -213,6 +219,7 @@
     <!-- Overlay for mobile sidebar -->
     <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-30 hidden lg:hidden glass-card backdrop-blur-sm"></div>
 
+    <script type="module" src="../assets/js/admin.js"></script>
     <script type="module" src="../assets/js/admin-tariffs.js"></script>
 </body>
 

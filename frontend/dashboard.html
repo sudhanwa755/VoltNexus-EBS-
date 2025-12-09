@@ -12,7 +12,15 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3b82f6',
+                        primary: '#7C3AED',
+                        'violet': {
+                            400: '#A78BFA',
+                            500: '#8B5CF6',
+                            600: '#7C3AED',
+                        },
+                        'purple': {
+                            600: '#9333EA',
+                        }
                     }
                 }
             }
@@ -28,8 +36,7 @@
     <div
         class="lg:hidden fixed w-full z-50 glass-card border-b border-slate-200 dark:border-slate-800 px-4 h-16 flex items-center justify-between">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">E</div>
-            <span class="font-bold text-xl">ElectroBill</span>
+            <span class="font-bold text-xl gradient-text-violet">ELECTROBILL</span>
         </div>
         <button id="mobileMenuBtn" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,14 +50,12 @@
         <aside id="sidebar"
             class="fixed inset-y-0 left-0 z-40 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 glass-card border-r border-slate-200 dark:border-slate-800 flex flex-col">
             <div class="h-16 flex items-center px-6 border-b border-slate-200 dark:border-slate-800">
-                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold mr-2">E
-                </div>
-                <span class="font-bold text-xl">ElectroBill</span>
+                <span class="font-bold text-xl gradient-text-violet">ELECTROBILL</span>
             </div>
 
             <nav class="flex-1 px-4 py-6 space-y-2">
                 <a href="dashboard.html"
-                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium">
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-violet-600 dark:text-violet-400 font-medium">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
@@ -102,7 +107,9 @@
         <main class="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8">
             <header class="flex items-center justify-between mb-8">
                 <div>
-                    <h1 class="text-2xl font-bold">Dashboard</h1>
+                    <h1
+                        class="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 bg-clip-text text-transparent mb-2">
+                        Dashboard</h1>
                     <p class="text-slate-500 dark:text-slate-400">Overview of your electricity consumption</p>
                 </div>
                 <button id="themeToggle"
@@ -127,54 +134,91 @@
 
             <!-- Stats Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div class="glass-card p-6 rounded-2xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-slate-500 dark:text-slate-400 font-medium">Current Bill</h3>
-                        <div class="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-blue-600">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z">
-                                </path>
-                            </svg>
-                        </div>
+                <!-- Current Bill Card -->
+                <div
+                    class="group relative glass-card-premium p-6 rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-300">
+                    <!-- Gradient Background Overlay -->
+                    <div
+                        class="absolute inset-0 gradient-cyan-violet opacity-5 group-hover:opacity-10 transition-opacity duration-300">
                     </div>
-                    <div class="text-3xl font-bold mb-1" id="currentBillAmount">₹0.00</div>
-                    <div class="text-sm text-slate-500" id="currentBillStatus">No pending bills</div>
-                </div>
 
-                <div class="glass-card p-6 rounded-2xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-slate-500 dark:text-slate-400 font-medium">Avg. Consumption</h3>
-                        <div class="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg text-green-600">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-slate-600 dark:text-slate-400 font-semibold">Current Bill</h3>
+                            <!-- Icon with gradient background -->
+                            <div
+                                class="p-3 gradient-cyan-violet rounded-xl shadow-lg glow-cyan group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z">
+                                    </path>
+                                </svg>
+                            </div>
                         </div>
-                    </div>
-                    <div class="text-3xl font-bold mb-1" id="avgConsumption">0 kWh</div>
-                    <div class="text-sm text-green-500 flex items-center gap-1">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                        </svg>
-                        <span>-5% vs last month</span>
+                        <div class="text-3xl font-bold mb-2 bg-gradient-to-r from-cyan-600 to-violet-600 bg-clip-text text-transparent"
+                            id="currentBillAmount">₹0.00</div>
+                        <div class="text-sm text-slate-500 dark:text-slate-400" id="currentBillStatus">No pending bills
+                        </div>
                     </div>
                 </div>
 
-                <div class="glass-card p-6 rounded-2xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-slate-500 dark:text-slate-400 font-medium">Next Due Date</h3>
-                        <div class="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg text-purple-600">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Avg Consumption Card -->
+                <div
+                    class="group relative glass-card-premium p-6 rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-300">
+                    <!-- Gradient Background Overlay -->
+                    <div
+                        class="absolute inset-0 gradient-emerald opacity-5 group-hover:opacity-10 transition-opacity duration-300">
+                    </div>
+
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-slate-600 dark:text-slate-400 font-semibold">Avg. Consumption</h3>
+                            <!-- Icon with gradient background -->
+                            <div
+                                class="p-3 gradient-emerald rounded-xl shadow-lg glow-emerald group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="text-3xl font-bold mb-2 bg-gradient-to-r from-emerald-600 to-lime-600 bg-clip-text text-transparent"
+                            id="avgConsumption">0 kWh</div>
+                        <div class="text-sm text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                </path>
+                                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                             </svg>
+                            <span>-5% vs last month</span>
                         </div>
                     </div>
-                    <div class="text-3xl font-bold mb-1" id="dueDate">-</div>
-                    <div class="text-sm text-slate-500">Don't miss the payment</div>
+                </div>
+
+                <!-- Next Due Date Card -->
+                <div
+                    class="group relative glass-card-premium p-6 rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-300">
+                    <!-- Gradient Background Overlay -->
+                    <div
+                        class="absolute inset-0 gradient-violet-pink opacity-5 group-hover:opacity-10 transition-opacity duration-300">
+                    </div>
+
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-slate-600 dark:text-slate-400 font-semibold">Next Due Date</h3>
+                            <!-- Icon with gradient background -->
+                            <div
+                                class="p-3 gradient-violet-pink rounded-xl shadow-lg glow-pink group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="text-3xl font-bold mb-2 bg-gradient-to-r from-violet-600 to-pink-600 bg-clip-text text-transparent"
+                            id="dueDate">-</div>
+                        <div class="text-sm text-slate-500 dark:text-slate-400">Don't miss the payment</div>
+                    </div>
                 </div>
             </div>
 
