@@ -233,11 +233,21 @@ const downloadReport = (reportType, format) => {
         } else {
             const container = document.createElement('div');
             container.style.padding = '20px';
-            container.innerHTML = `<h2>User Activity</h2>`;
+            container.style.color = '#0b1220';
+            container.style.fontFamily = 'Inter, Arial, sans-serif';
+            container.style.fontSize = '12px';
+            container.innerHTML = `<h2 style="margin-bottom:8px;color:#0b1220">User Activity</h2>`;
+            const styleEl = document.createElement('style');
+            styleEl.textContent = `
+                table { width:100%; border-collapse:collapse; color:#0b1220; font-size:12px }
+                th { font-weight:700; color:#091224; padding:8px; text-align:left; border-bottom:1px solid #ddd }
+                td { padding:8px; border-bottom:1px solid #f0f0f0 }
+            `;
+            container.appendChild(styleEl);
             const table = document.createElement('table');
             table.style.width = '100%';
             table.style.borderCollapse = 'collapse';
-            table.innerHTML = `<thead><tr><th style="border-bottom:1px solid #ddd;padding:8px;text-align:left">ID</th><th style="border-bottom:1px solid #ddd;padding:8px;text-align:left">Name</th><th style="border-bottom:1px solid #ddd;padding:8px;text-align:left">Email</th><th style="border-bottom:1px solid #ddd;padding:8px;text-align:left">Active</th></tr></thead>`;
+            table.innerHTML = `<thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Active</th></tr></thead>`;
             const tbody = document.createElement('tbody');
             rows.forEach(r => {
                 const tr = document.createElement('tr');
@@ -271,11 +281,21 @@ const downloadReport = (reportType, format) => {
         } else {
             const container = document.createElement('div');
             container.style.padding = '20px';
-            container.innerHTML = `<h2>All Readings</h2>`;
+            container.style.color = '#0b1220';
+            container.style.fontFamily = 'Inter, Arial, sans-serif';
+            container.style.fontSize = '12px';
+            container.innerHTML = `<h2 style="margin-bottom:8px;color:#0b1220">All Readings</h2>`;
+            const styleEl = document.createElement('style');
+            styleEl.textContent = `
+                table { width:100%; border-collapse:collapse; color:#0b1220; font-size:12px }
+                th { font-weight:700; color:#091224; padding:8px; text-align:left; border-bottom:1px solid #ddd }
+                td { padding:8px; border-bottom:1px solid #f0f0f0 }
+            `;
+            container.appendChild(styleEl);
             const table = document.createElement('table');
             table.style.width = '100%';
             table.style.borderCollapse = 'collapse';
-            table.innerHTML = `<thead><tr><th style="border-bottom:1px solid #ddd;padding:8px;text-align:left">ID</th><th style="border-bottom:1px solid #ddd;padding:8px;text-align:left">Customer</th><th style="border-bottom:1px solid #ddd;padding:8px;text-align:left">Month</th><th style="border-bottom:1px solid #ddd;padding:8px;text-align:right">Curr</th><th style="border-bottom:1px solid #ddd;padding:8px;text-align:right">Prev</th><th style="border-bottom:1px solid #ddd;padding:8px;text-align:right">Units</th></tr></thead>`;
+            table.innerHTML = `<thead><tr><th>ID</th><th>Customer</th><th>Month</th><th style="text-align:right">Curr</th><th style="text-align:right">Prev</th><th style="text-align:right">Units</th></tr></thead>`;
             const tbody = document.createElement('tbody');
             rows.forEach(r => {
                 const tr = document.createElement('tr');
