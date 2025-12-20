@@ -143,8 +143,9 @@ export const Auth = {
         await supabase.auth.signOut();
         sessionStorage.removeItem(CONFIG.TOKEN_KEY);
         sessionStorage.removeItem(CONFIG.USER_KEY);
-        // Use absolute path from root to work from both user and admin folders
-        window.location.href = '/frontend/login.html';
+        // Dynamic redirect: Check if we are serving from /frontend/ (localhost) or root (Vercel)
+        const isLocalFrontend = window.location.pathname.includes('/frontend/');
+        window.location.href = isLocalFrontend ? '/frontend/login.html' : '/login.html';
     },
 
     getUser: () => {
