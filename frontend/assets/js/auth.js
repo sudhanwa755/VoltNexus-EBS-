@@ -143,8 +143,8 @@ export const Auth = {
         await supabase.auth.signOut();
         sessionStorage.removeItem(CONFIG.TOKEN_KEY);
         sessionStorage.removeItem(CONFIG.USER_KEY);
-        // Use absolute path from root to work from both user and admin folders
-        window.location.href = '/frontend/login.html';
+        // Use root-relative path which works if 'frontend' is the deployment root (standard Vercel setup)
+        window.location.href = '/login.html';
     },
 
     getUser: () => {
