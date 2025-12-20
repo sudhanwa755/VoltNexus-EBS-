@@ -15,9 +15,6 @@ const userInitials = document.getElementById('userInitials');
 const userName = document.getElementById('userName');
 const userEmail = document.getElementById('userEmail');
 const logoutBtn = document.getElementById('logoutBtn');
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const sidebar = document.getElementById('sidebar');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
 const usersTableBody = document.getElementById('usersTableBody');
 const themeToggle = document.getElementById('themeToggle');
 
@@ -46,20 +43,7 @@ if (themeToggle) {
     themeToggle.addEventListener('click', toggleTheme);
 }
 
-// Mobile Sidebar
-const toggleSidebar = () => {
-    const isClosed = sidebar.classList.contains('-translate-x-full');
-    if (isClosed) {
-        sidebar.classList.remove('-translate-x-full');
-        sidebarOverlay.classList.remove('hidden');
-    } else {
-        sidebar.classList.add('-translate-x-full');
-        sidebarOverlay.classList.add('hidden');
-    }
-};
 
-mobileMenuBtn.addEventListener('click', toggleSidebar);
-sidebarOverlay.addEventListener('click', toggleSidebar);
 
 // Store all users for filtering
 let allUsers = [];
@@ -96,11 +80,11 @@ const renderUsers = (users) => {
 
     usersTableBody.innerHTML = users.map(u => `
         <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
-            <td class="px-4 py-3 font-medium text-xs font-mono" title="${u.id}">
+            <td class="px-4 py-3 font-medium text-xs font-mono hidden md:table-cell" title="${u.id}">
                 ${u.id.substring(0, 8)}...
             </td>
             <td class="px-4 py-3">${u.name || '-'}</td>
-            <td class="px-4 py-3">${u.email}</td>
+            <td class="px-4 py-3 hidden md:table-cell">${u.email}</td>
             <td class="px-4 py-3 text-right">
                 <button onclick="window.openReadingModal('${u.id}', '${u.name || u.email}')" 
                     class="px-4 py-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:hover:bg-blue-900/50 font-medium text-sm transition-colors">

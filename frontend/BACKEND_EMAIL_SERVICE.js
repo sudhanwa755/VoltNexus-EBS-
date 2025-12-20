@@ -143,8 +143,8 @@ function generateEmailHTML(alert) {
                     </div>
                     
                     <div class="footer">
-                        <p>This is an automated alert from ElectroBill. Please do not reply to this email.</p>
-                        <p>If you believe you received this in error, please contact support at support@electrobill.com</p>
+                        <p>This is an automated alert from VoltNexus. Please do not reply to this email.</p>
+                        <p>If you believe you received this in error, please contact support at support@voltnexus.com</p>
                     </div>
                 </div>
             </body>
@@ -227,7 +227,7 @@ function generateEmailHTML(alert) {
                     </div>
                     
                     <div class="footer">
-                        <p>This is an automated alert from ElectroBill. Please do not reply to this email.</p>
+                        <p>This is an automated alert from VoltNexus. Please do not reply to this email.</p>
                         <p>If you'd like to adjust your alert threshold or disable alerts, visit your <a href="https://your-app-domain.com/profile">profile settings</a>.</p>
                     </div>
                 </div>

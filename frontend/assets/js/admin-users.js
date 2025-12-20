@@ -14,9 +14,6 @@ const userInitials = document.getElementById('userInitials');
 const userName = document.getElementById('userName');
 const userEmail = document.getElementById('userEmail');
 const logoutBtn = document.getElementById('logoutBtn');
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const sidebar = document.getElementById('sidebar');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
 const usersTableBody = document.getElementById('usersTableBody');
 const userSearch = document.getElementById('userSearch');
 
@@ -27,25 +24,18 @@ if (user) {
     userEmail.textContent = user.email;
 }
 
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
+}
+
 // Logout
 logoutBtn.addEventListener('click', () => {
     Auth.logout();
 });
 
-// Mobile Sidebar
-const toggleSidebar = () => {
-    const isClosed = sidebar.classList.contains('-translate-x-full');
-    if (isClosed) {
-        sidebar.classList.remove('-translate-x-full');
-        sidebarOverlay.classList.remove('hidden');
-    } else {
-        sidebar.classList.add('-translate-x-full');
-        sidebarOverlay.classList.add('hidden');
-    }
-};
 
-mobileMenuBtn.addEventListener('click', toggleSidebar);
-sidebarOverlay.addEventListener('click', toggleSidebar);
 
 // Modal Functions
 const editUserModal = document.getElementById('editUserModal');
@@ -162,7 +152,7 @@ const renderUsersTable = (users) => {
                     </div>
                 </div>
             </td>
-            <td class="px-4 py-3">
+            <td class="px-4 py-3 hidden md:table-cell">
                 <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium border ${u.role === 'ADMIN'
             ? 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800'
             : 'bg-slate-50 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'
@@ -170,7 +160,7 @@ const renderUsersTable = (users) => {
                     ${u.role}
                 </span>
             </td>
-            <td class="px-4 py-3">
+            <td class="px-4 py-3 hidden md:table-cell">
                 <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium ${u.status === 'active'
             ? 'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400'
             : 'bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400'

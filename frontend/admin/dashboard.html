@@ -3,8 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
+    <script>
+        if (localStorage.getItem('ebs_theme') === 'dark' || (!('ebs_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - ElectroBill</title>
+    <title>Admin Dashboard - VoltNexus</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -35,7 +42,7 @@
     <div
         class="lg:hidden fixed w-full z-50 glass-card border-b border-slate-200 dark:border-slate-800 px-4 h-16 flex items-center justify-between">
         <div class="flex items-center gap-2">
-            <span class="font-bold text-xl gradient-text-violet">ELECTROBILL</span> <span
+            <span class="font-bold text-xl gradient-text-violet">VoltNexus</span> <span
                 class="text-xs bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 px-2 py-0.5 rounded-full ml-1">Admin</span>
         </div>
         <button id="mobileMenuBtn" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
@@ -48,10 +55,20 @@
     <div class="flex min-h-screen pt-16 lg:pt-0">
         <!-- Sidebar -->
         <aside id="sidebar"
-            class="fixed inset-y-0 left-0 z-40 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 glass-card border-r border-slate-200 dark:border-slate-800 flex flex-col">
-            <div class="h-16 flex items-center px-6 border-b border-slate-200 dark:border-slate-800">
-                <span class="font-bold text-xl gradient-text-violet">ELECTROBILL</span> <span
-                    class="text-xs bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 px-2 py-0.5 rounded-full ml-1 align-top">Admin</span>
+            class="fixed inset-y-0 left-0 z-60 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 glass-card border-r border-slate-200 dark:border-slate-800 flex flex-col">
+            <div class="h-16 flex items-center justify-between px-6 border-b border-slate-200 dark:border-slate-800">
+                <div class="flex items-center gap-2">
+                    <span class="font-bold text-xl gradient-text-violet">VoltNexus</span>
+                    <span
+                        class="text-xs bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 px-2 py-0.5 rounded-full align-top">Admin</span>
+                </div>
+                <button id="sidebarCloseBtn"
+                    class="lg:hidden p-1 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
             </div>
 
             <nav class="flex-1 px-4 py-6 space-y-2">
@@ -133,42 +150,47 @@
 
         <!-- Main Content -->
         <main class="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8">
-            <header class="flex items-center justify-between mb-8">
-                <div>
+            <header class="responsive-header mb-8">
+                <div class="order-1">
                     <h1
                         class="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 bg-clip-text text-transparent mb-2">
                         Admin Dashboard</h1>
                     <p class="text-slate-500 dark:text-slate-400">System overview and statistics</p>
                 </div>
-                <div class="flex items-center gap-3">
+
+                <div
+                    class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 order-3 sm:order-2 w-full sm:w-auto mt-4 sm:mt-0">
                     <div
-                        class="flex items-center gap-2 bg-white dark:bg-slate-800 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700">
-                        <label class="text-sm text-slate-500 mr-2">From</label>
+                        class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 bg-white dark:bg-slate-800 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700">
+                        <label class="text-sm text-slate-500">From</label>
                         <input id="filterDateFrom" type="date"
                             class="text-sm bg-transparent outline-none dark:text-white">
-                        <label class="text-sm text-slate-500 ml-3 mr-2">To</label>
+                        <label class="text-sm text-slate-500">To</label>
                         <input id="filterDateTo" type="date"
                             class="text-sm bg-transparent outline-none dark:text-white">
                         <button id="applyFilterBtn"
-                            class="ml-3 px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-sm hover:bg-slate-100 dark:hover:bg-slate-700">Apply</button>
+                            class="px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-sm hover:bg-slate-100 dark:hover:bg-slate-700">Apply</button>
                         <button id="exportCsvBtn"
-                            class="ml-2 px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-sm hover:bg-slate-100 dark:hover:bg-slate-700">Export
+                            class="px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-700 text-sm hover:bg-slate-100 dark:hover:bg-slate-700">Export
                             CSV</button>
                     </div>
-                    <button id="themeToggle"
-                        class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700">
-                        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
-                            </path>
-                        </svg>
-                        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
-                            </path>
-                        </svg>
-                    </button>
                 </div>
+                <!-- Theme Toggle (Extreme Right) -->
+                <button id="themeToggle"
+                    class="order-2 sm:order-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 btn-touch">
+                    <svg class="w-5 h-5 text-amber-500 dark:hidden" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    <svg class="w-5 h-5 hidden dark:block text-slate-400" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                        </path>
+                    </svg>
+                </button>
             </header>
 
             <!-- Stats Cards -->
@@ -276,8 +298,12 @@
         </main>
     </div>
 
+    <!-- Mobile Bottom Navigation (Admin Pages - 6 items) -->
+
+
     <!-- Overlay for mobile sidebar -->
-    <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-30 hidden lg:hidden glass-card backdrop-blur-sm"></div>
+    <!-- Overlay for mobile sidebar -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-55 hidden lg:hidden glass-card backdrop-blur-sm"></div>
 
     <script type="module" src="../assets/js/admin.js"></script>
     <script type="module" src="../assets/js/admin-analytics.js"></script>

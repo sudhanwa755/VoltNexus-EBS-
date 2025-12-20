@@ -16,7 +16,7 @@ if (!Auth.checkAuth || !Auth.checkAuth('ADMIN')) {
 }
 
 // Utility: CSV escaping and download
-const csvEscape = (v) => '"' + String(v ?? '') .replace(/"/g, '""') + '"';
+const csvEscape = (v) => '"' + String(v ?? '').replace(/"/g, '""') + '"';
 
 const download = (filename, content, mime = 'text/csv') => {
     const blob = new Blob([content], { type: mime });
@@ -317,4 +317,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
     });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
 });

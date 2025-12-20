@@ -2,6 +2,10 @@ import { Auth } from './auth.js';
 import { API } from './api.js';
 import { supabase } from './supabase.js';
 import { formatCurrency } from './utils.js';
+import { Sidebar } from './components/sidebar.js';
+
+// Initialize Sidebar
+Sidebar.init();
 
 // Auth Check
 if (!Auth.checkAuth('USER')) {
@@ -15,9 +19,6 @@ const userInitials = document.getElementById('userInitials');
 const userName = document.getElementById('userName');
 const userEmail = document.getElementById('userEmail');
 const logoutBtn = document.getElementById('logoutBtn');
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const sidebar = document.getElementById('sidebar');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
 const paymentForm = document.getElementById('paymentForm');
 const successModal = document.getElementById('successModal');
 const closeModalBtn = document.getElementById('closeModalBtn');
@@ -33,21 +34,6 @@ if (user) {
 logoutBtn.addEventListener('click', () => {
     Auth.logout();
 });
-
-// Mobile Sidebar
-const toggleSidebar = () => {
-    const isClosed = sidebar.classList.contains('-translate-x-full');
-    if (isClosed) {
-        sidebar.classList.remove('-translate-x-full');
-        sidebarOverlay.classList.remove('hidden');
-    } else {
-        sidebar.classList.add('-translate-x-full');
-        sidebarOverlay.classList.add('hidden');
-    }
-};
-
-mobileMenuBtn.addEventListener('click', toggleSidebar);
-sidebarOverlay.addEventListener('click', toggleSidebar);
 
 // Load Bill Details
 let currentBill = null;

@@ -2,6 +2,10 @@
 import { Auth } from './auth.js';
 import { API } from './api.js';
 import { formatCurrency, toggleTheme } from './utils.js';
+import { Sidebar } from './components/sidebar.js';
+
+// Initialize Sidebar
+Sidebar.init();
 
 // Auth Check - ADMIN role only
 console.log('Admin.js: Checking auth for ADMIN role');
@@ -19,9 +23,6 @@ const userName = document.getElementById('userName');
 const userEmail = document.getElementById('userEmail');
 const logoutBtn = document.getElementById('logoutBtn');
 const themeToggle = document.getElementById('themeToggle');
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const sidebar = document.getElementById('sidebar');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
 
 // Initialize User Info safely
 if (user) {
@@ -41,22 +42,6 @@ if (logoutBtn) {
 if (themeToggle) {
     themeToggle.addEventListener('click', toggleTheme);
 }
-
-// Mobile Sidebar
-const toggleSidebar = () => {
-    if (!sidebar || !sidebarOverlay) return;
-    const isClosed = sidebar.classList.contains('-translate-x-full');
-    if (isClosed) {
-        sidebar.classList.remove('-translate-x-full');
-        sidebarOverlay.classList.remove('hidden');
-    } else {
-        sidebar.classList.add('-translate-x-full');
-        sidebarOverlay.classList.add('hidden');
-    }
-};
-
-if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleSidebar);
-if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
 
 // Load Admin Dashboard Data
 const loadDashboardData = async () => {

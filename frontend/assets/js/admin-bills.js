@@ -1,6 +1,7 @@
 import { Auth } from './auth.js';
 import { API } from './api.js';
 import { supabase } from './supabase.js';
+import { toggleTheme } from './utils.js';
 
 // Auth Check
 if (!Auth.checkAuth('ADMIN')) {
@@ -14,9 +15,6 @@ const userInitials = document.getElementById('userInitials');
 const userName = document.getElementById('userName');
 const userEmail = document.getElementById('userEmail');
 const logoutBtn = document.getElementById('logoutBtn');
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const sidebar = document.getElementById('sidebar');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
 const billsTableBody = document.getElementById('billsTableBody');
 const searchInput = document.getElementById('searchInput');
 
@@ -38,41 +36,13 @@ logoutBtn.addEventListener('click', () => {
     Auth.logout();
 });
 
-// Mobile Sidebar
-const toggleSidebar = () => {
-    const isClosed = sidebar.classList.contains('-translate-x-full');
-    if (isClosed) {
-        sidebar.classList.remove('-translate-x-full');
-        sidebarOverlay.classList.remove('hidden');
-    } else {
-        sidebar.classList.add('-translate-x-full');
-        sidebarOverlay.classList.add('hidden');
-    }
-};
 
-mobileMenuBtn.addEventListener('click', toggleSidebar);
-sidebarOverlay.addEventListener('click', toggleSidebar);
 
 // Theme Toggle
-window.toggleTheme = () => {
-    const isDark = document.documentElement.classList.contains('dark');
-    if (isDark) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-    } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-    }
-};
-
-// Initialize theme
-const initTheme = () => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-    }
-};
-initTheme();
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
+}
 
 // Store all bills for filtering
 let allBills = [];
@@ -121,11 +91,11 @@ const renderBills = (bills) => {
         return `
             <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                 <td class="px-6 py-4 font-medium">${customerName}</td>
-                <td class="px-6 py-4 text-slate-600 dark:text-slate-400">${customerEmail}</td>
-                <td class="px-6 py-4">${bill.month || '-'}</td>
-                <td class="px-6 py-4">${bill.units || 0} kWh</td>
+                <td class="px-6 py-4 text-slate-600 dark:text-slate-400 hidden md:table-cell">${customerEmail}</td>
+                <td class="px-6 py-4 hidden md:table-cell">${bill.month || '-'}</td>
+                <td class="px-6 py-4 hidden md:table-cell">${bill.units || 0} kWh</td>
                 <td class="px-6 py-4 font-medium">₹${parseFloat(bill.amount || 0).toFixed(2)}</td>
-                <td class="px-6 py-4">${bill.due_date ? new Date(bill.due_date).toLocaleDateString() : '-'}</td>
+                <td class="px-6 py-4 hidden md:table-cell">${bill.due_date ? new Date(bill.due_date).toLocaleDateString() : '-'}</td>
                 <td class="px-6 py-4">
                     <span class="px-2 py-1 rounded-full text-xs font-medium ${statusClass}">
                         ${bill.status || 'Pending'}

@@ -1,6 +1,10 @@
 import { Auth } from './auth.js';
 import { API } from './api.js';
 import { formatCurrency, formatDate, toggleTheme, showAlert } from './utils.js';
+import { Sidebar } from './components/sidebar.js';
+
+// Initialize Sidebar
+Sidebar.init();
 
 // Auth Check
 if (!Auth.checkAuth('USER')) {
@@ -15,9 +19,6 @@ const userName = document.getElementById('userName');
 const userEmail = document.getElementById('userEmail');
 const logoutBtn = document.getElementById('logoutBtn');
 const themeToggle = document.getElementById('themeToggle');
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const sidebar = document.getElementById('sidebar');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
 const billsTableBody = document.getElementById('billsTableBody');
 
 // Initialize User Info
@@ -34,21 +35,6 @@ logoutBtn.addEventListener('click', () => {
 
 // Theme Toggle
 themeToggle.addEventListener('click', toggleTheme);
-
-// Mobile Sidebar
-const toggleSidebar = () => {
-    const isClosed = sidebar.classList.contains('-translate-x-full');
-    if (isClosed) {
-        sidebar.classList.remove('-translate-x-full');
-        sidebarOverlay.classList.remove('hidden');
-    } else {
-        sidebar.classList.add('-translate-x-full');
-        sidebarOverlay.classList.add('hidden');
-    }
-};
-
-mobileMenuBtn.addEventListener('click', toggleSidebar);
-sidebarOverlay.addEventListener('click', toggleSidebar);
 
 // Store all bills for filtering
 let allBills = [];
@@ -101,11 +87,11 @@ const renderBills = (bills) => {
 
     billsTableBody.innerHTML = bills.map(bill => `
         <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
-            <td class="px-6 py-4 font-medium text-slate-900 dark:text-slate-100">#${bill.id.substring(0, 8)}</td>
+            <td class="px-6 py-4 font-medium text-slate-900 dark:text-slate-100 hidden md:table-cell">#${bill.id.substring(0, 8)}</td>
             <td class="px-6 py-4">${bill.month}</td>
-            <td class="px-6 py-4">${bill.units}</td>
+            <td class="px-6 py-4 hidden md:table-cell">${bill.units}</td>
             <td class="px-6 py-4 font-medium">${formatCurrency(bill.amount)}</td>
-            <td class="px-6 py-4">${formatDate(bill.due_date)}</td>
+            <td class="px-6 py-4 hidden md:table-cell">${formatDate(bill.due_date)}</td>
             <td class="px-6 py-4">
                 <span class="px-2 py-1 rounded-full text-xs font-medium ${bill.status === 'Paid'
             ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
@@ -114,9 +100,22 @@ const renderBills = (bills) => {
                     ${bill.status}
                 </span>
             </td>
-            <td class="px-6 py-4 space-x-2">
-                <button class="download-bill-btn text-purple-600 hover:text-purple-700 font-medium text-sm" data-bill-id="${bill.id}">Download</button>
-                ${bill.status === 'Pending' ? `<a href="payment.html?billId=${bill.id}" class="text-green-600 hover:text-green-700 font-medium text-sm">Pay</a>` : ''}
+            <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                    <button class="download-bill-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-purple-50 text-purple-700 hover:bg-purple-100 dark:bg-purple-900/20 dark:text-purple-400 dark:hover:bg-purple-900/30 transition-colors border border-purple-200 dark:border-purple-800" data-bill-id="${bill.id}">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                        Download
+                    </button>
+                    ${bill.status === 'Pending' ? `
+                    <a href="payment.html?billId=${bill.id}" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-green-50 text-green-700 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 dark:hover:bg-green-900/30 transition-colors border border-green-200 dark:border-green-800">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                        </svg>
+                        Pay
+                    </a>` : ''}
+                </div>
             </td>
         </tr>
     `).join('');
@@ -231,7 +230,7 @@ const downloadBillPDF = async (bill) => {
                         font-weight: bold;
                         color: #1e3a8a;
                         margin-bottom: 5px;
-                    ">ElectroBill</div>
+                    ">VoltNexus</div>
                     <div style="
                         font-size: 22px;
                         font-weight: 600;

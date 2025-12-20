@@ -3,6 +3,10 @@ import { API } from './api.js';
 import { toggleTheme, showAlert } from './utils.js';
 import { CONFIG } from './config.js';
 import { supabase } from './supabase.js';
+import { Sidebar } from './components/sidebar.js';
+
+// Initialize Sidebar
+Sidebar.init();
 
 // Auth Check — allow any authenticated role (user or admin) to access profile
 if (!Auth.checkAuth()) {
@@ -20,9 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const userName = document.getElementById('userName');
     const userEmail = document.getElementById('userEmail');
     const logoutBtn = document.getElementById('logoutBtn');
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const sidebar = document.getElementById('sidebar');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
 
     // Profile Specific Elements
     const profileInitials = document.getElementById('profileInitials');
@@ -276,19 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Logout
     if (logoutBtn) logoutBtn.addEventListener('click', () => Auth.logout());
 
-    // Mobile Sidebar
-    const toggleSidebar = () => {
-        const isClosed = sidebar.classList.contains('-translate-x-full');
-        if (isClosed) {
-            sidebar.classList.remove('-translate-x-full');
-            sidebarOverlay.classList.remove('hidden');
-        } else {
-            sidebar.classList.add('-translate-x-full');
-            sidebarOverlay.classList.add('hidden');
-        }
-    };
 
-    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleSidebar);
-    if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
 
 }); // End DOMContentLoaded

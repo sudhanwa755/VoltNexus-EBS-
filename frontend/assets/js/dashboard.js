@@ -1,6 +1,10 @@
 import { Auth } from './auth.js';
 import { API } from './api.js';
 import { formatCurrency, formatDate, toggleTheme } from './utils.js';
+import { Sidebar } from './components/sidebar.js';
+
+// Initialize Sidebar
+Sidebar.init();
 
 // Auth Check - USER role only
 console.log('Dashboard.js: Checking auth for USER role');
@@ -18,9 +22,6 @@ const userName = document.getElementById('userName');
 const userEmail = document.getElementById('userEmail');
 const logoutBtn = document.getElementById('logoutBtn');
 const themeToggle = document.getElementById('themeToggle');
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const sidebar = document.getElementById('sidebar');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
 
 // Initialize User Info
 if (user) {
@@ -36,21 +37,6 @@ logoutBtn.addEventListener('click', () => {
 
 // Theme Toggle
 themeToggle.addEventListener('click', toggleTheme);
-
-// Mobile Sidebar
-const toggleSidebar = () => {
-    const isClosed = sidebar.classList.contains('-translate-x-full');
-    if (isClosed) {
-        sidebar.classList.remove('-translate-x-full');
-        sidebarOverlay.classList.remove('hidden');
-    } else {
-        sidebar.classList.add('-translate-x-full');
-        sidebarOverlay.classList.add('hidden');
-    }
-};
-
-mobileMenuBtn.addEventListener('click', toggleSidebar);
-sidebarOverlay.addEventListener('click', toggleSidebar);
 
 // Dashboard Data Loading
 const loadDashboardData = async () => {
@@ -116,7 +102,7 @@ const loadDashboardData = async () => {
             recentBillsTable.innerHTML = recentBills.map(bill => `
                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                     <td class="px-6 py-4">${bill.month}</td>
-                    <td class="px-6 py-4">${bill.units} kWh</td>
+                    <td class="px-6 py-4 hidden md:table-cell">${bill.units} kWh</td>
                     <td class="px-6 py-4 font-medium">${formatCurrency(bill.amount)}</td>
                     <td class="px-6 py-4">
                         <span class="px-2 py-1 rounded-full text-xs font-medium ${bill.status === 'Paid'
@@ -224,7 +210,7 @@ const displayConsumptionAlert = (alert) => {
     }
 
     let alertHTML = '';
-    
+
     if (alert.exceeded) {
         alertHTML = `
             <div class="flex items-start gap-4">

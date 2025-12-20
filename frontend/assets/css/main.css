@@ -71,6 +71,16 @@ h6 {
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
+/* Z-Index Fixes */
+.z-60 {
+    z-index: 60;
+}
+
+.z-55 {
+    z-index: 55;
+}
+
+
 /* Premium Glass Card with Hover */
 .glass-card-premium {
     background: rgba(255, 255, 255, 0.85);
@@ -374,4 +384,116 @@ h6 {
 
 .hover-lift:hover {
     transform: translateY(-4px);
+}
+
+/* ===================================
+   Mobile Responsive Utilities
+   =================================== */
+
+/* Touch-Friendly Button Sizes */
+.btn-touch {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Mobile Table Wrapper with Horizontal Scroll */
+.mobile-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
+}
+
+.mobile-table-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.mobile-table-wrapper::-webkit-scrollbar-track {
+    background: rgba(148, 163, 184, 0.1);
+    border-radius: 3px;
+}
+
+.mobile-table-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(124, 58, 237, 0.3);
+    border-radius: 3px;
+}
+
+.mobile-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(124, 58, 237, 0.5);
+}
+
+/* Prevent horizontal scroll on body */
+body {
+    overflow-x: hidden;
+}
+
+/* Mobile Text Utilities */
+.mobile-text-wrap {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.mobile-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Mobile Spacing */
+@media (max-width: 640px) {
+    .mobile-stack>* {
+        margin-bottom: 0.75rem;
+    }
+
+    .mobile-stack>*:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Responsive Header Flex */
+.responsive-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+@media (max-width: 640px) {
+    .responsive-header {
+        flex-direction: row;
+        /* Keep row on mobile for Title - Toggle split */
+        align-items: center;
+    }
+}
+
+/* Mobile Card Stack */
+@media (max-width: 768px) {
+    .mobile-card-stack {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Ensure modals are mobile-friendly */
+@media (max-width: 640px) {
+    .modal-content {
+        max-width: calc(100vw - 2rem);
+        margin: 1rem;
+    }
+}
+
+/* Mobile-optimized form inputs */
+@media (max-width: 640px) {
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    input[type="month"],
+    select,
+    textarea {
+        font-size: 16px;
+        /* Prevents zoom on iOS */
+    }
 }

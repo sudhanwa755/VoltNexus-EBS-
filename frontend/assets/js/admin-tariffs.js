@@ -1,5 +1,6 @@
 import { Auth } from './auth.js';
 import { API } from './api.js';
+import { toggleTheme } from './utils.js';
 
 // Auth Check
 if (!Auth.checkAuth('ADMIN')) {
@@ -8,14 +9,17 @@ if (!Auth.checkAuth('ADMIN')) {
 
 const user = Auth.getUser();
 
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
+}
+
 // UI Elements
 const userInitials = document.getElementById('userInitials');
 const userName = document.getElementById('userName');
 const userEmail = document.getElementById('userEmail');
 const logoutBtn = document.getElementById('logoutBtn');
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const sidebar = document.getElementById('sidebar');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
 const tariffForm = document.getElementById('tariffForm');
 
 // Initialize User Info
@@ -30,20 +34,7 @@ logoutBtn.addEventListener('click', () => {
     Auth.logout();
 });
 
-// Mobile Sidebar
-const toggleSidebar = () => {
-    const isClosed = sidebar.classList.contains('-translate-x-full');
-    if (isClosed) {
-        sidebar.classList.remove('-translate-x-full');
-        sidebarOverlay.classList.remove('hidden');
-    } else {
-        sidebar.classList.add('-translate-x-full');
-        sidebarOverlay.classList.add('hidden');
-    }
-};
 
-mobileMenuBtn.addEventListener('click', toggleSidebar);
-sidebarOverlay.addEventListener('click', toggleSidebar);
 
 // Theme Toggle - Initialize dark mode from localStorage
 const initTheme = () => {
