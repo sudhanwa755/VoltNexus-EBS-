@@ -208,7 +208,7 @@ frontend/
 ## 🐞 Troubleshooting
 
 <details>
-<summary><strong>Issue: Admin Dashboard shows 500 Error</strong></summary>
+<strong>Issue: Admin Dashboard shows 500 Error</strong>
 
   * **Cause:** The `is_admin()` function might be missing in Postgres.
   * **Fix:** Re-run the SQL setup script specifically for the RLS policies section.
@@ -216,7 +216,7 @@ frontend/
 </details>
 
 <details>
-<summary><strong>Issue: PDF Generation has dummy data</strong></summary>
+<strong>Issue: PDF Generation has dummy data</strong>
 
   * **Cause:** The user profile is missing address details.
   * **Fix:** Go to Profile Settings and ensure all fields are filled before downloading.
