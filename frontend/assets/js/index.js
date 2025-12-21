@@ -1,23 +1,31 @@
 // Index page - Landing page functionality
 import { Sidebar } from './components/sidebar.js';
 import { supabase } from './supabase.js';
+import { CONFIG } from './config.js';
 
 // Initialize sidebar
 Sidebar.init();
 
-// Theme toggle
+// Theme toggle logic
+const toggleTheme = () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem(CONFIG.THEME_KEY, isDark ? 'dark' : 'light');
+};
+
 const themeToggle = document.getElementById('themeToggle');
+const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+
+// Set initial theme if not already set by head script
+if (localStorage.getItem(CONFIG.THEME_KEY) === 'dark') {
+    document.documentElement.classList.add('dark');
+}
 
 if (themeToggle) {
-    // Set initial theme
-    if (localStorage.getItem('theme') === 'dark') {
-        document.documentElement.classList.add('dark');
-    }
+    themeToggle.addEventListener('click', toggleTheme);
+}
 
-    themeToggle.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
-        localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    });
+if (mobileThemeToggle) {
+    mobileThemeToggle.addEventListener('click', toggleTheme);
 }
 
 // Login/Register button handlers

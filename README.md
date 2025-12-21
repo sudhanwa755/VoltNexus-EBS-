@@ -76,21 +76,21 @@
     <td width="50%" valign="top">
       <h3 align="center">👤 For Customers</h3>
       <ul>
-        <li>✨ <b>Self-Service Portal:</b> Auto-generated Meter IDs (<code>MTR-XXXXXX</code>).</li>
-        <li>📊 <b>Interactive Dashboard:</b> Visual usage charts & history.</li>
-        <li>📃 <b>Bill Management:</b> Filter, search, and download <b>PDF bills</b>.</li>
-        <li>💳 <b>Payments:</b> Secure online payment simulation.</li>
-        <li>🌙 <b>UI/UX:</b> Responsive design with Dark Mode.</li>
+        <li>✨ <b>Modern Experience:</b> Premium Glassmorphism UI with smooth global theme transitions.</li>
+        <li>📱 <b>Responsive Design:</b> Optimized for all devices with a robust, consistent mobile navbar.</li>
+        <li>📊 <b>Interactive Dashboard:</b> Visual usage charts, history, and real-time consumption tracking.</li>
+        <li>📃 <b>Bill Management:</b> Filter, search, and download <b>PDF bills</b> with real data.</li>
+        <li>💳 <b>Payments & Features:</b> Secure payment simulation and comprehensive feature showcase.</li>
       </ul>
     </td>
     <td width="50%" valign="top">
       <h3 align="center">🛡 For Admins</h3>
       <ul>
-        <li>📈 <b>Macro Analytics:</b> System-wide consumption data.</li>
-        <li>⚡ <b>Tariff Control:</b> Create dynamic tiered pricing plans.</li>
-        <li>👥 <b>User Management:</b> CRUD operations for users & meters.</li>
-        <li>📂 <b>Reports:</b> Export data to <b>CSV & PDF</b>.</li>
-        <li>🔒 <b>Security:</b> Role-Based Access Control (RBAC).</li>
+        <li>📈 <b>Macro Analytics:</b> System-wide consumption data & revenue trends.</li>
+        <li>⚡ <b>Tariff Control:</b> Dynamic tiered pricing with tax & surcharge management.</li>
+        <li>👥 <b>User Management:</b> Full CRUD for users, meters, and connection details.</li>
+        <li>📂 <b>Advanced Reports:</b> Exports to <b>CSV & PDF</b> with precision data.</li>
+        <li>🔒 <b>Security:</b> Role-Based Access Control (RBAC) with Supabase RLS.</li>
       </ul>
     </td>
   </tr>

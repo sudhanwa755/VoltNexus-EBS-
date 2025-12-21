@@ -36,8 +36,8 @@ KEY HIGHLIGHTS:
 - Full-stack web application
 - Real-time data with Supabase backend
 - Role-based access control (Admin/User)
-- Responsive design (mobile, tablet, desktop)
-- Dark mode support
+- Premium Glassmorphism UI with Global Theme Transitions
+- Fully Responsive Mobile-First Design
 - Auto-generated meter numbers
 - PDF bill downloads with real customer data
 - Secure authentication & authorization
