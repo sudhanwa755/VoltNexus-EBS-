@@ -44,15 +44,84 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputCountry = document.getElementById('inputCountry');
     const inputMeter = document.getElementById('inputMeter');
 
-    // Consumption Limit Elements
-    const consumptionLimit = document.getElementById('consumptionLimit');
-    const alertThreshold = document.getElementById('alertThreshold');
-    const emailAlert = document.getElementById('emailAlert');
-    const saveLimitBtn = document.getElementById('saveLimitBtn');
-    const clearLimitBtn = document.getElementById('clearLimitBtn');
-    const currentLimitDisplay = document.getElementById('currentLimitDisplay');
-    const currentLimitValue = document.getElementById('currentLimitValue');
-    const currentThresholdValue = document.getElementById('currentThresholdValue');
+
+
+    // Customize UI for Admin users
+    if (user && user.role === 'ADMIN') {
+        console.log('User is ADMIN, adjusting profile UI references');
+
+        // Update sidebar links (profile.html uses the shared sidebar structure which defaults to user links)
+        const navContainer = document.querySelector('aside nav');
+        if (navContainer) {
+            navContainer.innerHTML = `
+                <a href="admin/dashboard.html"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors font-medium">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="admin/manage-users.html"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors font-medium">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    Manage Users
+                </a>
+                <a href="admin/bills.html"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors font-medium">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                        </path>
+                    </svg>
+                    Manage Bills
+                </a>
+                <a href="admin/tariffs.html"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors font-medium">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                        </path>
+                    </svg>
+                    Tariffs
+                </a>
+                <a href="admin/add-reading.html"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors font-medium">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    Add Reading
+                </a>
+                 <a href="admin/reports.html"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors font-medium">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V7a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                        </path>
+                    </svg>
+                    Reports
+                </a>
+                <a href="profile.html"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-violet-600 dark:text-violet-400 font-medium ring-1 ring-violet-200 dark:ring-violet-700/50">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                    Profile
+                </a>
+            `;
+        }
+
+        // Hide Meter Number input for admins (not relevant)
+        const meterContainer = document.getElementById('inputMeter')?.closest('.md\\:col-span-2');
+        if (meterContainer) {
+            meterContainer.style.display = 'none';
+        }
+    }
 
     // Initialize User Info
     if (user) {
@@ -67,9 +136,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if (inputName) inputName.value = user.name || '';
         if (inputEmail) inputEmail.value = user.email || '';
 
+        // Member Since Year
+        if (document.getElementById('memberSince')) {
+            try {
+                // Use created_at from user object, fallback to current year if missing
+                const dateString = user.created_at || new Date().toISOString();
+                const joinYear = new Date(dateString).getFullYear();
+                const memberSinceEl = document.getElementById('memberSince');
+
+                const iconHtml = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>`;
+
+                memberSinceEl.innerHTML = `${iconHtml} Member since ${joinYear}`;
+            } catch (e) {
+                console.error('Error parsing member since date:', e);
+            }
+        }
+
         // Load profile and consumption data
         loadProfileData();
-        loadConsumptionLimit();
+
     }
 
     // Load Profile Data
@@ -194,85 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Save Profile button not found! Check if element with id="saveProfileBtn" exists');
     }
 
-    // Load Consumption Limit
-    async function loadConsumptionLimit() {
-        try {
-            const limit = await API.user.getConsumptionLimit(user.id);
-            if (limit) {
-                if (consumptionLimit) consumptionLimit.value = limit.monthly_limit || '';
-                if (alertThreshold) alertThreshold.value = limit.alert_threshold || 80;
-                if (emailAlert) emailAlert.checked = limit.email_alert !== false;
 
-                // Show current limit
-                if (currentLimitValue) currentLimitValue.textContent = limit.monthly_limit;
-                if (currentThresholdValue) currentThresholdValue.textContent = limit.alert_threshold;
-                if (currentLimitDisplay) currentLimitDisplay.classList.remove('hidden');
-            }
-        } catch (error) {
-            console.error('Error loading consumption limit:', error);
-            if (error && error.message && error.message.toLowerCase().includes('auth')) {
-                showAlert('Session expired — please sign in again', 'error');
-                setTimeout(() => Auth.logout(), 1200);
-                return;
-            }
-        }
-    }
-
-    // Save Consumption Limit
-    if (saveLimitBtn) {
-        saveLimitBtn.addEventListener('click', async () => {
-            try {
-                const limit = parseInt(consumptionLimit.value) || null;
-                const threshold = parseInt(alertThreshold.value) || 80;
-
-                if (limit && limit <= 0) {
-                    showAlert('Consumption limit must be greater than 0', 'error');
-                    return;
-                }
-
-                if (threshold < 50 || threshold > 100) {
-                    showAlert('Alert threshold must be between 50% and 100%', 'error');
-                    return;
-                }
-
-                await API.user.setConsumptionLimit(user.id, limit, threshold, emailAlert.checked);
-                showAlert('Consumption limit saved successfully!', 'success');
-                loadConsumptionLimit();
-            } catch (error) {
-                console.error('Error saving consumption limit:', error);
-                if (error && error.message && error.message.toLowerCase().includes('auth')) {
-                    showAlert('Session expired — please sign in again', 'error');
-                    setTimeout(() => Auth.logout(), 1200);
-                    return;
-                }
-                showAlert('Error saving consumption limit: ' + error.message, 'error');
-            }
-        });
-    }
-
-    // Clear Consumption Limit
-    if (clearLimitBtn) {
-        clearLimitBtn.addEventListener('click', async () => {
-            if (!confirm('Are you sure you want to remove your consumption limit?')) return;
-
-            try {
-                await API.user.deleteConsumptionLimit(user.id);
-                consumptionLimit.value = '';
-                alertThreshold.value = 80;
-                emailAlert.checked = true;
-                currentLimitDisplay.classList.add('hidden');
-                showAlert('Consumption limit cleared successfully!', 'success');
-            } catch (error) {
-                console.error('Error clearing consumption limit:', error);
-                if (error && error.message && error.message.toLowerCase().includes('auth')) {
-                    showAlert('Session expired — please sign in again', 'error');
-                    setTimeout(() => Auth.logout(), 1200);
-                    return;
-                }
-                showAlert('Error clearing consumption limit: ' + error.message, 'error');
-            }
-        });
-    }
 
     // Logout
     if (logoutBtn) logoutBtn.addEventListener('click', () => Auth.logout());

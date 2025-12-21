@@ -52,13 +52,12 @@
     <!-- Navigation -->
     <nav class="fixed w-full z-50 glass-card border-b border-slate-200 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center gap-2">
-                    <div
-                        class="w-8 h-8 bg-gradient-to-br from-blue-600 to-violet-600 rounded-lg flex items-center justify-center text-white font-bold shadow-lg shadow-blue-500/30">
-                        V
-                    </div>
-                    <span class="font-bold text-xl tracking-tight gradient-text-violet">VoltNexus</span>
+            <div class="flex justify-between h-20 md:h-32 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="assets/day.png" alt="VoltNexus"
+                        class="h-14 md:h-24 w-auto dark:hidden transition-all duration-300">
+                    <img src="assets/night.png" alt="VoltNexus"
+                        class="h-14 md:h-24 w-auto hidden dark:block transition-all duration-300">
                 </div>
                 <div class="flex items-center gap-4">
                     <button id="themeToggle"
@@ -96,7 +95,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+    <section class="pt-40 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
         <div class="text-center max-w-4xl mx-auto relative">
             <!-- Decorative Elements -->
             <div
@@ -372,11 +371,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div class="col-span-1 md:col-span-1">
-                    <div class="flex items-center gap-2 mb-4">
-                        <div
-                            class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
-                            V</div>
-                        <span class="font-bold text-xl tracking-tight">VoltNexus</span>
+                    <div class="flex items-center mb-6">
+                        <img src="assets/day.png" alt="VoltNexus" class="h-12 md:h-16 w-auto dark:hidden">
+                        <img src="assets/night.png" alt="VoltNexus" class="h-12 md:h-16 w-auto hidden dark:block">
                     </div>
                     <p class="text-slate-500 text-sm leading-relaxed">Making electricity billing simple, transparent,
                         and smart for everyone.</p>

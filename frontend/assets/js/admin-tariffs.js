@@ -36,30 +36,7 @@ logoutBtn.addEventListener('click', () => {
 
 
 
-// Theme Toggle - Initialize dark mode from localStorage
-const initTheme = () => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark');
-    }
-};
 
-// Toggle theme function
-window.toggleTheme = () => {
-    const isDark = document.documentElement.classList.contains('dark');
-    if (isDark) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-    } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-    }
-};
-
-// Initialize theme on page load
-initTheme();
 
 // Load existing tariff data
 const loadTariffs = async () => {

@@ -1,7 +1,7 @@
 import { Auth } from './auth.js';
 import { API } from './api.js';
 import { supabase } from './supabase.js';
-import { formatCurrency } from './utils.js';
+import { formatCurrency, toggleTheme } from './utils.js';
 import { Sidebar } from './components/sidebar.js';
 
 // Initialize Sidebar
@@ -34,6 +34,12 @@ if (user) {
 logoutBtn.addEventListener('click', () => {
     Auth.logout();
 });
+
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
+}
 
 // Load Bill Details
 let currentBill = null;

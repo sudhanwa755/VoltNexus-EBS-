@@ -202,8 +202,26 @@ export const API = {
          * @returns {Promise<Object>} Created customer info
          */
         createCustomerInfo: async (userId, customerData) => {
-            // Auto-generate unique meter number
-            const meterNumber = await API.user.generateUniqueMeterNumber();
+            // Check user role first to see if they should have a meter
+            let userRole = 'USER';
+            try {
+                const { data: profile } = await supabase
+                    .from('profiles')
+                    .select('role')
+                    .eq('id', userId)
+                    .single();
+                if (profile) userRole = profile.role;
+            } catch (roleError) {
+                console.warn('Could not fetch user role for meter assignment check, defaulting to USER', roleError);
+            }
+
+            // Auto-generate unique meter number only for USERs
+            let meterNumber = null;
+            if (userRole !== 'ADMIN') {
+                meterNumber = await API.user.generateUniqueMeterNumber();
+            } else {
+                console.log('User is ADMIN, skipping meter number generation');
+            }
 
             const { data, error } = await supabase
                 .from('customer_info')
@@ -222,7 +240,7 @@ export const API = {
                 .single();
 
             if (error) throw error;
-            console.log('Created customer info with meter number:', meterNumber);
+            if (meterNumber) console.log('Created customer info with meter number:', meterNumber);
             return data;
         },
 
@@ -336,6 +354,65 @@ export const API = {
                 .single();
 
             if (error) throw error;
+
+            // If user role was updated to ADMIN, clear their meter number as admins shouldn't have one
+            // If user role was updated to ADMIN, clear their meter number as admins shouldn't have one
+            if (updates.role === 'ADMIN') {
+                console.log('User promoted to ADMIN, clearing meter number if exists');
+                try {
+                    const { error: clearError } = await supabase
+                        .from('customer_info')
+                        .update({ meter_number: null })
+                        .eq('user_id', id);
+                    if (clearError) throw clearError;
+                    console.log('Successfully cleared meter for new admin');
+                } catch (err) {
+                    console.error('Failed to clear meter number for promoted admin:', err);
+                }
+            }
+
+            // If user role was updated to USER, assign a meter number if they don't have one
+            if (updates.role === 'USER') {
+                console.log('User demoted to USER, checking if they need a meter number');
+                try {
+                    const { data: info, error: infoError } = await supabase
+                        .from('customer_info')
+                        .select('meter_number')
+                        .eq('user_id', id)
+                        .single();
+
+                    // If error is not "not found", throw it
+                    if (infoError && infoError.code !== 'PGRST116') throw infoError;
+
+                    if (!info || !info.meter_number) {
+                        const meterNumber = await API.user.generateUniqueMeterNumber();
+                        console.log('Assigning new meter number on demotion:', meterNumber);
+
+                        if (!info) {
+                            // Create record if doesn't exist
+                            const { error: insError } = await supabase.from('customer_info').insert({
+                                user_id: id,
+                                meter_number: meterNumber,
+                                country: 'India'
+                            });
+                            if (insError) throw insError;
+                            console.log('Successfully created customer_info and assigned meter for demoted user');
+                        } else {
+                            // Update existing record with the new meter
+                            const { error: updError } = await supabase.from('customer_info')
+                                .update({ meter_number: meterNumber })
+                                .eq('user_id', id);
+                            if (updError) throw updError;
+                            console.log('Successfully updated meter_number for demoted user');
+                        }
+                    } else {
+                        console.log('User already has a meter number:', info.meter_number);
+                    }
+                } catch (assignError) {
+                    console.error('Failed to assign meter number for demoted user:', assignError);
+                }
+            }
+
             return data;
         },
         toggleUserStatus: async (id) => {

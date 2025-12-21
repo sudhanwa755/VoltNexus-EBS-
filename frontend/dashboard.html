@@ -41,9 +41,10 @@
 
     <!-- Mobile Header -->
     <div
-        class="lg:hidden fixed w-full z-50 glass-card border-b border-slate-200 dark:border-slate-800 px-4 h-16 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-            <span class="font-bold text-xl gradient-text-violet">VoltNexus</span>
+        class="lg:hidden fixed w-full z-50 glass-card border-b border-slate-200 dark:border-slate-800 px-4 h-24 flex items-center justify-between transition-all duration-300">
+        <div class="flex items-center">
+            <img src="assets/day.png" alt="VoltNexus" class="h-16 w-auto dark:hidden">
+            <img src="assets/night.png" alt="VoltNexus" class="h-16 w-auto hidden dark:block">
         </div>
         <button id="mobileMenuBtn" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -52,12 +53,18 @@
         </button>
     </div>
 
-    <div class="flex min-h-screen pt-16 lg:pt-0">
+    <div class="flex min-h-screen pt-28 lg:pt-0">
         <!-- Sidebar -->
         <aside id="sidebar"
             class="fixed inset-y-0 left-0 z-60 w-64 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 glass-card border-r border-slate-200 dark:border-slate-800 flex flex-col">
-            <div class="h-16 flex items-center justify-between px-6 border-b border-slate-200 dark:border-slate-800">
-                <span class="font-bold text-xl gradient-text-violet">VoltNexus</span>
+            <div
+                class="h-24 md:h-32 flex items-center justify-between px-6 border-b border-slate-200 dark:border-slate-800 transition-all duration-300">
+                <div class="flex items-center">
+                    <img src="assets/day.png" alt="VoltNexus"
+                        class="h-16 md:h-24 w-auto object-contain flex-shrink-0 dark:hidden">
+                    <img src="assets/night.png" alt="VoltNexus"
+                        class="h-16 md:h-24 w-auto object-contain flex-shrink-0 hidden dark:block">
+                </div>
                 <button id="sidebarCloseBtn"
                     class="lg:hidden p-1 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,6 +92,15 @@
                         </path>
                     </svg>
                     My Bills
+                </a>
+                <a href="alerts.html"
+                    class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors font-medium">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                        </path>
+                    </svg>
+                    Alerts
                 </a>
                 <a href="profile.html"
                     class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors font-medium">
