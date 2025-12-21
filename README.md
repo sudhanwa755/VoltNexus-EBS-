@@ -44,8 +44,7 @@
 
 <div id="demo" align="center">
   <h2>🎥 Demo</h2>
-  <video src="https://github.com/sudhanwa755/VoltNexus-EBS-/raw/08b27341d69f02ec2e92b8ae0dde578f3614e750/Voltnexus.mp4" width="80%" controls>
-  </video>
+  <img src="Voltnexus.gif" alt="VoltNexus Demo Walkthrough" width="80%">
   <p>
     <em>Watch the VoltNexus walkthrough</em>
   </p>
