@@ -28,9 +28,7 @@
     <a href="https://github.com/sudhanwa755/VoltNexus-EBS-/issues">
       <img src="https://img.shields.io/github/issues/sudhanwa755/VoltNexus-EBS-?style=for-the-badge&color=red" alt="Issues">
     </a>
-    <a href="https://github.com/sudhanwa755/VoltNexus-EBS-/blob/master/LICENSE">
-      <img src="https://img.shields.io/github/license/sudhanwa755/VoltNexus-EBS-?style=for-the-badge&color=green" alt="License">
-    </a>
+   
   </p>
 
   <br />
@@ -208,7 +206,7 @@ frontend/
 ## 🐞 Troubleshooting
 
 <details>
-<strong>Issue: Admin Dashboard shows 500 Error</strong>
+<summary><strong>Issue: Admin Dashboard shows 500 Error</strong></summary>
 
   * **Cause:** The `is_admin()` function might be missing in Postgres.
   * **Fix:** Re-run the SQL setup script specifically for the RLS policies section.
@@ -216,7 +214,7 @@ frontend/
 </details>
 
 <details>
-<strong>Issue: PDF Generation has dummy data</strong>
+<summary><strong>Issue: PDF Generation has dummy data</strong></summary>
 
   * **Cause:** The user profile is missing address details.
   * **Fix:** Go to Profile Settings and ensure all fields are filled before downloading.
@@ -236,13 +234,6 @@ Contributions are what make the open source community such an amazing place to l
 5.  Open a Pull Request
 
 -----
-
-## 📜 License
-
-Distributed under the **MIT License**. See `LICENSE` for more information.
-
------
-
 
 ## 📬 Contact
 
