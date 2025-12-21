@@ -16,20 +16,20 @@
   </p>
 
   <p>
-    <a href="https://github.com/sudhanwa755/EBS/graphs/contributors">
-      <img src="https://img.shields.io/github/contributors/sudhanwa755/EBS?style=for-the-badge&color=orange" alt="Contributors">
+    <a href="https://github.com/sudhanwa755/VoltNexus-EBS-/graphs/contributors">
+      <img src="https://img.shields.io/github/contributors/sudhanwa755/VoltNexus-EBS-?style=for-the-badge&color=orange" alt="Contributors">
     </a>
-    <a href="https://github.com/sudhanwa755/EBS/network/members">
-      <img src="https://img.shields.io/github/forks/sudhanwa755/EBS?style=for-the-badge&color=blue" alt="Forks">
+    <a href="https://github.com/sudhanwa755/VoltNexus-EBS-/network/members">
+      <img src="https://img.shields.io/github/forks/sudhanwa755/VoltNexus-EBS-?style=for-the-badge&color=blue" alt="Forks">
     </a>
-    <a href="https://github.com/sudhanwa755/EBS/stargazers">
-      <img src="https://img.shields.io/github/stars/sudhanwa755/EBS?style=for-the-badge&color=yellow" alt="Stars">
+    <a href="https://github.com/sudhanwa755/VoltNexus-EBS-/stargazers">
+      <img src="https://img.shields.io/github/stars/sudhanwa755/VoltNexus-EBS-?style=for-the-badge&color=yellow" alt="Stars">
     </a>
-    <a href="https://github.com/sudhanwa755/EBS/issues">
-      <img src="https://img.shields.io/github/issues/sudhanwa755/EBS?style=for-the-badge&color=red" alt="Issues">
+    <a href="https://github.com/sudhanwa755/VoltNexus-EBS-/issues">
+      <img src="https://img.shields.io/github/issues/sudhanwa755/VoltNexus-EBS-?style=for-the-badge&color=red" alt="Issues">
     </a>
-    <a href="https://github.com/sudhanwa755/EBS/blob/master/LICENSE">
-      <img src="https://img.shields.io/github/license/sudhanwa755/EBS?style=for-the-badge&color=green" alt="License">
+    <a href="https://github.com/sudhanwa755/VoltNexus-EBS-/blob/master/LICENSE">
+      <img src="https://img.shields.io/github/license/sudhanwa755/VoltNexus-EBS-?style=for-the-badge&color=green" alt="License">
     </a>
   </p>
 
@@ -38,7 +38,7 @@
 
   <a href="#demo"><strong>View Demo »</strong></a> · 
   <a href="#installation"><strong>Setup Guide »</strong></a> · 
-  <a href="https://github.com/sudhanwa755/EBS/issues"><strong>Report Bug »</strong></a>
+  <a href="https://github.com/sudhanwa755/VoltNexus-EBS-/issues"><strong>Report Bug »</strong></a>
 
 </div>
 
@@ -117,54 +117,56 @@ The architecture utilizes **8 optimized tables** with strictly enforced Foreign 
 
 ## 🛠 Installation & Setup
 
-
-
 ### 1. Prerequisites
 * A [Supabase](https://supabase.com/) Account.
-* Node.js (optional, for `http-server`) or Python.
+* Node.js (recommended) or Python for running a local server.
+* Git.
 
 ### 2. Clone the Repository
 ```bash
-git clone [https://github.com/sudhanwa755/EBS.git](https://github.com/sudhanwa755/EBS.git)
+git clone https://github.com/sudhanwa755/VoltNexus-EBS-.git
 cd EBS
 ```
-### 3\. Configure Backend (Supabase)
 
+### 3. Configure Backend (Supabase)
 1.  Create a new project in Supabase.
 2.  Go to the **SQL Editor**.
-3.  Copy the contents of `clean-setup-FIXED.sql` and run it.
-4.  *Verify that all 8 tables are created successfully.*
+3.  Copy the contents of `clean-setup-FIXED.sql` from the root directory.
+4.  Run the script to create all 8 tables and RLS policies.
+5.  *Verify that tables (profiles, customer_info, etc.) are created successfully.*
 
-### 4\. Link Credentials
-
-Create a file at `frontend/assets/js/config.js`:
+### 4. Link Credentials
+Create a file at `frontend/assets/js/config.js` and add your **Project URL** and **Anon Key**:
 
 ```javascript
 export const CONFIG = {
-  SUPABASE_URL: 'YOUR_SUPABASE_PROJECT_URL',
-  SUPABASE_ANON_KEY: 'YOUR_SUPABASE_ANON_KEY'
+    API_BASE_URL: '/api',
+    SUPABASE_URL: 'YOUR_SUPABASE_PROJECT_URL',
+    SUPABASE_KEY: 'YOUR_SUPABASE_ANON_KEY', // Check Project Settings > API
+    APP_NAME: 'VoltNexus',
+    CURRENCY: '₹',
+    THEME_KEY: 'ebs_theme',
+    TOKEN_KEY: 'ebs_token',
+    USER_KEY: 'ebs_user'
 };
 ```
 
-### 5\. Launch Application
+### 5. Launch Application
+You can use any local server to run the frontend.
 
-You can use any local server.
-
-**Using Python:**
-
-```bash
-cd frontend
-python -m http.server 8000
-```
-
-**Using Node (http-server):**
-
+**Option A: Using Node (Recommended)**
 ```bash
 cd frontend
 npx http-server
 ```
 
-**Using VS Code:**
+**Option B: Using Python**
+```bash
+cd frontend
+python -m http.server 8000
+```
+
+**Option C: Using VS Code**
 Right-click `index.html` and select **"Open with Live Server"**.
 
 
@@ -205,21 +207,21 @@ frontend/
 
 ## 🐞 Troubleshooting
 
-\<details\>
-\<summary\>\<strong\>Issue: Admin Dashboard shows 500 Error\</strong\>\</summary\>
+<details>
+<summary><strong>Issue: Admin Dashboard shows 500 Error</strong></summary>
 
   * **Cause:** The `is_admin()` function might be missing in Postgres.
   * **Fix:** Re-run the SQL setup script specifically for the RLS policies section.
 
-\</details\>
+</details>
 
-\<details\>
-\<summary\>\<strong\>Issue: PDF Generation has dummy data\</strong\>\</summary\>
+<details>
+<summary><strong>Issue: PDF Generation has dummy data</strong></summary>
 
   * **Cause:** The user profile is missing address details.
   * **Fix:** Go to Profile Settings and ensure all fields are filled before downloading.
 
-\</details\>
+</details>
 
 -----
 
@@ -244,7 +246,7 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ## 📬 Contact
 
-**Project Link:** [https://github.com/sudhanwa755/EBS](https://github.com/sudhanwa755/EBS)
+**Project Link:** [https://github.com/sudhanwa755/VoltNexus-EBS-](https://github.com/sudhanwa755/VoltNexus-EBS-)
 
 <div align="center">
 
@@ -266,8 +268,8 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 ### ⭐️ Show your support ⭐️
 <p>If you found this project helpful, please give it a star!</p>
 
-<a href="https://github.com/sudhanwa755/EBS/stargazers">
-  <img src="https://img.shields.io/github/stars/sudhanwa755/EBS?style=social" alt="GitHub Stars">
+<a href="https://github.com/sudhanwa755/VoltNexus-EBS-/stargazers">
+  <img src="https://img.shields.io/github/stars/sudhanwa755/VoltNexus-EBS-?style=social" alt="GitHub Stars">
 </a>
 
 <br />
