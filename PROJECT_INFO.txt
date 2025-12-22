@@ -1,12 +1,12 @@
 ================================================================================
-                    ELECTRICITY BILLING SYSTEM (EBS)
-                         PROJECT DOCUMENTATION
+                    ⚡ VOLTNEXUS: ENERGY MANAGEMENT (EBS)
+                           PROJECT DOCUMENTATION
 ================================================================================
 
-Version: 1.0
-Last Updated: November 23, 2025
+Version: 1.1
+Last Updated: December 22, 2025
 Status: Production Ready
-Tech Stack: HTML, CSS, JavaScript, Supabase (PostgreSQL)
+Tech Stack: HTML, CSS (Tailwind), JavaScript, Supabase (PostgreSQL)
 
 ================================================================================
                          TABLE OF CONTENTS
@@ -27,20 +27,22 @@ Tech Stack: HTML, CSS, JavaScript, Supabase (PostgreSQL)
                         1. PROJECT OVERVIEW
 ================================================================================
 
-ElectroBill is a modern, full-featured electricity billing management system
-designed for both customers and administrators. It provides real-time bill
-tracking, payment processing, consumption monitoring, and administrative
-tools for user and tariff management.
+VoltNexus is a next-gen, real-time electricity billing management system
+designed for both customers and administrators. It provides an elite
+interface for tracking consumption, processing payments, and managing
+utility distribution with unmatched security and aesthetic precision.
 
 KEY HIGHLIGHTS:
-- Full-stack web application
-- Real-time data with Supabase backend
-- Role-based access control (Admin/User)
-- Premium Glassmorphism UI with Global Theme Transitions
-- Fully Responsive Mobile-First Design
-- Auto-generated meter numbers
-- PDF bill downloads with real customer data
-- Secure authentication & authorization
+- Premium Glassmorphism UI with smooth global theme transitions
+- Dynamic Animated Background Gradient Orbs for premium feel
+- Robust vanilla JavaScript core with Supabase Real-time backend
+- Row Level Security (RLS) for absolute data privacy
+- Auto-generated sequential meter numbers (MTR-XXXXXX)
+- Professional PDF bill downloads with real-time customer data
+- Dynamic Tiered Pricing Engine for complex billing cycles
+- Intelligent Consumption Logic with personalized Usage Alerts
+- Mobile-First responsive design with adaptive sidebar/navbar
+- Secure RBAC (Admin/Customer) via Supabase Auth
 
 ================================================================================
                     2. FEATURES & FUNCTIONALITY
@@ -50,118 +52,98 @@ CUSTOMER FEATURES:
 --------------------------------------------------------------------------------
 
 ✅ User Registration & Login
-   - Email/password authentication via Supabase Auth
+   - Secure email/password authentication via Supabase Auth
+   - Anti-duplicate email verification logic
    - Auto-generated unique meter numbers (MTR-XXXXXX format)
-   - Success modal showing meter number after registration
-   - Automatic redirect to login page
+   - Premium success modal showcasing new meter number after registration
+   - Seamless automatic redirect to login for enhanced UX
+   - Persistent session management (stay logged in across sessions)
 
-✅ Dashboard
-   - Current month consumption overview
-   - Pending bill alerts
-   - Quick payment access
-   - Consumption chart visualization
-   - Recent bills summary
+✅ Interactive Dashboard
+   - Real-time consumption overview (Current Month vs. Previous)
+   - Visual data charts using modern CSS/JS for consumption trends
+   - Dynamic "Pending Bill" alerts with high-visibility badges
+   - Glassmorphic "Quick Pay" cards for instant access
+   - Recent activity feed showing last 5 billing transactions
 
-✅ Bill Management
-   - View all bills with filters (Paid/Pending)
-   - Search bills by month, ID, or amount
-   - Download bills as PDF directly from list
-   - Real customer data in PDFs (not dummy data!)
-   - Detailed bill breakdown (units, charges, taxes)
+✅ Bill & Document Management
+   - Advanced filtering system (Paid/Unpaid/Month/Year)
+   - Real-time search by Bill ID or Amount
+   - One-click PDF generation using html2pdf.js
+   - ⚡ Professional Invoices: Dynamic branding, real customer address, 
+     meter number, detailed unit breakdown, and tax calculation
+   - Historical billing archive with unlimited data retention
 
-✅ Profile Management
-   - Update personal information
-   - Manage contact details (mobile, phone)
-   - Update address (street, city, state, postal code, country)
-   - View auto-assigned meter number (read-only)
-   - Change password
-   - Theme toggle (light/dark mode)
+✅ Elite Profile Settings
+   - Comprehensive personal info management (Name, KYC Status)
+   - Advanced Address Control: Street, City, State, ZIP, and Country
+   - Contact Sync: Mobile and secondary phone number management
+   - Real-time read-only display of auto-assigned meter number
+   - Secure password update interface
+   - Global Theme Control: Intelligent Light/Dark mode transitions
 
-✅ Payment Processing
-   - Online bill payment interface
-   - Payment confirmation
-   - Payment history tracking
-   - Due date reminders
+✅ Smart Payments & Alerts
+   - Integrated payment simulation for immediate status updates
+   - High-fidelity payment confirmation screens
+   - Detailed payment history tracking with transaction IDs
+   - 🔔 Consumption Alerts: Specific dashboard notifications when 
+     usage exceeds predefined thresholds.
+   - Dedicated Alerts Center: View history of triggered usage warnings.
+   - Automated due date calculation and status badges
 
 ADMIN FEATURES:
 --------------------------------------------------------------------------------
 
-✅ Admin Dashboard
-   - Total users count
-   - Total revenue statistics
-   - Pending bills overview
-   - System analytics
-   - Monthly trends
+✅ Macro-Analytics Dashboard
+   - System-wide revenue aggregation with monthly trend charts (Chart.js)
+   - Real-time user metrics: Total Users (+ weekly growth tracking)
+   - Total Revenue Monitoring with percentage comparisons
+   - Overdue Bills Detector: High-priority tiles for pending collections
+   - Dynamic System Status tiles with interactive hover effects
+   - Advanced Date Filtering: Generate insights for specific time ranges
+   - Direct CSV Export: Download raw system data from the dashboard
 
-✅ User Management (manage-users.html)
-   - View all registered users
-   - Search and filter users
-   - Activate/deactivate accounts (toggle status)
-   - View user details (ID, name, email, role, status)
-   - Track user consumption
-   - User status management (active/inactive)
+✅ User Lifecycle Management (manage-users.html)
+   - Centralized user repository with advanced lightning-fast search
+   - Real-time status toggles (Active/Inactive) with instant DB sync
+   - Detailed user inspector: View profile, meter, and connection date
+   - VIP/Role Marker: Distinct visual badges for Admin vs. Customer
+   - Consumption audit: Track usage history for specific users
+   - Account security: Reset password or manage RBAC roles
 
-✅ Bill Management (bills.html)
-   - View all customer bills
-   - Filter by status (Paid/Pending)
-   - Search by customer or bill ID
-   - Update bill status
-   - Delete bills
-   - View bill details with customer information
+✅ Precision Billing Engine (bills.html)
+   - Global ledger viewing with multi-stage status filtering
+   - Direct status override (Mark as Paid/Pending/Failed)
+   - Secure bill deletion with audit trail safety
+   - Search by Customer Name, Email, or Transaction ID
+   - Real-time total outstanding amount calculation
 
-✅ Meter Reading Entry (add-reading.html)
-   - Add new meter readings for any customer
-   - Select customer from dropdown list
-   - Enter previous and current meter readings
-   - Auto-calculate units consumed (current - previous)
-   - Set reading month and billing month
-   - Automatic bill generation with tiered pricing
-   - Fetches active tariff plan for calculation
-   - Creates/updates both consumption and bills tables
-   - Prevents duplicate readings (with overwrite option)
-   - Due date auto-set to 15th of next month
+✅ Meter Reading Hub (add-reading.html)
+   - Intelligent search/dropdown for instant user selection
+   - Side-by-side reading entry: Compares current reading vs. last recorded
+   - ⚡ Auto-Calculator: Instant unit-consumption math (Current-Prev)
+   - Duplicate Prevention Engine: Prevents double-billing for the same month
+   - Overwrite Mode: Securely update existing readings if errors occur
+   - Auto-Bill Generation: Bills are created the millisecond reading is saved
+   - Smart Due Dates: Automated logic sets due date to mid-next-month
 
-✅ Tariff Management (tariffs.html)
-   - Create/update tiered tariff plans
-   - Three-tier pricing structure:
-     * Tier 1: 0-100 units (configurable rate)
-     * Tier 2: 101-300 units (configurable rate)
-     * Tier 3: 300+ units (configurable rate)
-   - Set base fee (fixed monthly charge)
-   - Configure effective dates
-   - Category support (residential/commercial/industrial/agricultural)
-   - Tax percentage and fuel surcharge options
-   - Activate/deactivate tariff plans
-   - Update existing "Standard Residential Tariff"
+✅ Dynamic Tariff Controller (tariffs.html)
+   - Multi-Tier Rate Slabs: Configure 0-100, 101-300, and 300+ rates
+   - Base Fee Management: Set fixed maintenance/connection charges
+   - Advanced Tax Logic: Configurable tax percentage and fuel surcharges
+   - Scheduled Validity: Set effective and expiry dates for pricing updates
+   - Priority Logic: The system fetches the latest active plan for precision
+   - Category Support: Separate logic for Residential/Commercial categories
 
-✅ Reports & Analytics (reports.html)
-   - Revenue Reports:
-     * Monthly revenue aggregation
-     * Total units consumed per month
-     * Fixed charges breakdown
-     * Export as CSV or PDF
-   
-   - Outstanding Bills Report:
-     * All pending/unpaid bills
-     * Customer details with meter numbers
-     * Due dates and amounts
-     * Export as CSV or PDF
-   
-   - User Activity Report:
-     * All registered users
-     * Account status (active/inactive)
-     * Export as CSV or PDF
-   
-   - All Readings Report:
-     * Complete meter reading history
-     * Previous and current readings
-     * Units consumed per month
-     * Export as CSV or PDF
-   
-   - Export Formats:
-     * PDF: Professional formatted reports with html2pdf.js
-     * CSV: Excel-compatible comma-separated values
-     * Automatic fallback to JSON if PDF fails
+✅ Advanced Reporting Suite (reports.html)
+   - Revenue Reports: Monthly collection breakdowns & fixed charge summaries
+   - Outstanding Reports: Prioritized list of unpaid accounts with contact info
+   - User Activity Reports: Full registration and activity history exports
+   - All Readings: Forensic audit of every meter reading event
+   - 📂 Multi-Format Export:
+     * High-Resolution PDF: Professional letterhead with tables
+     * Excel-Compatible CSV: Raw data for external audit
+     * Lightning-Fast JSON: Developer-friendly structural data
 
 ================================================================================
                       3. TECHNOLOGY STACK
@@ -663,7 +645,7 @@ STEP 4: TEST APPLICATION (10 minutes)
    → Check profile for meter number
 
 3. Login as Admin
-   → Email: admin@electrobill.com
+   → Email: admin@voltnexus.com
    → Password: admin123
    → Should see admin dashboard
    → Access admin pages
@@ -765,7 +747,7 @@ How It Works:
 3. Fetches customer_info using API.user.getCustomerInfo(userId)
 4. Merges data into bill object with real customer information
 5. Generates professional HTML template with:
-   - Company header: "ElectroBill"
+   - Company header: "VoltNexus"
    - Bill To section: Real customer name and address
    - Bill Details: Bill number, issue date, due date, status
    - Meter Readings: Previous, current, units consumed
@@ -1175,7 +1157,7 @@ START APPLICATION:
 → Open frontend/index.html in browser via Live Server
 
 LOGIN AS ADMIN:
-→ Email: admin@electrobill.com
+→ Email: admin@voltnexus.com
 → Password: admin123
 
 LOGIN AS USER:
@@ -1228,8 +1210,8 @@ Version 1.0 (November 23, 2025)
 This file contains complete information about the Electricity Billing System.
 Keep this file for reference during development and maintenance.
 
-Last Updated: November 23, 2025
-Document Version: 1.0
+Last Updated: December 22, 2025
+Document Version: 1.1
 Project Status: Production Ready
 
 For questions or issues, refer to specific sections above.
