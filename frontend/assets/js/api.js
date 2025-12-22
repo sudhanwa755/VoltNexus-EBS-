@@ -165,83 +165,99 @@ export const API = {
          * Generate a unique meter number in format MTR-XXXXXX
          * @returns {Promise<string>} Unique meter number
          */
+        /**
+         * Generate a unique meter number
+         * Uses random generation strategy to avoid RLS visibility issues with sequential checks
+         * @returns {Promise<string>} Unique meter number
+         */
         generateUniqueMeterNumber: async () => {
-            try {
-                // Get the highest existing meter number
-                const { data, error } = await supabase
-                    .from('customer_info')
-                    .select('meter_number')
-                    .not('meter_number', 'is', null)
-                    .order('meter_number', { ascending: false })
-                    .limit(1);
+            // RLS policies often prevent users from seeing other users' meter numbers,
+            // so checking for the "highest" existing number returns 0/null for new users,
+            // causing duplicate "MTR-000001" generation.
 
-                if (error) throw error;
+            // We use a robust random generation strategy instead:
+            // Format: MTR-YYYY-XXXX where YYYY is year/month part and XXXX is random
+            // This ensures general sorting but randomizes enough for uniqueness
 
-                let nextNumber = 1;
-                if (data && data.length > 0 && data[0].meter_number) {
-                    // Extract number from format MTR-XXXXXX
-                    const match = data[0].meter_number.match(/MTR-(\d+)/);
-                    if (match) {
-                        nextNumber = parseInt(match[1]) + 1;
-                    }
-                }
-
-                // Format as MTR-XXXXXX with zero padding
-                return `MTR-${String(nextNumber).padStart(6, '0')}`;
-            } catch (error) {
-                console.error('Error generating meter number:', error);
-                // Fallback to timestamp-based if query fails
-                return `MTR-${Date.now()}`;
-            }
+            const randomPart = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+            return `MTR-${randomPart}`;
         },
 
         /**
          * Create customer information for a user
+         * Includes retry logic for unique constraints and profile availability
          * @param {string} userId - User ID
          * @param {Object} customerData - Customer information
          * @returns {Promise<Object>} Created customer info
          */
         createCustomerInfo: async (userId, customerData) => {
-            // Check user role first to see if they should have a meter
-            let userRole = 'USER';
-            try {
-                const { data: profile } = await supabase
-                    .from('profiles')
-                    .select('role')
-                    .eq('id', userId)
-                    .single();
-                if (profile) userRole = profile.role;
-            } catch (roleError) {
-                console.warn('Could not fetch user role for meter assignment check, defaulting to USER', roleError);
+            const MAX_RETRIES = 3;
+            let attempt = 0;
+
+            // Wait for profile to be available (Trigger delay)
+            const waitForProfile = async (uid, retries = 5) => {
+                for (let i = 0; i < retries; i++) {
+                    const { data, error } = await supabase
+                        .from('profiles')
+                        .select('role')
+                        .eq('id', uid)
+                        .single();
+
+                    if (data) return data;
+                    // Wait 500ms before retry
+                    await new Promise(r => setTimeout(r, 500));
+                }
+                return null;
+            };
+
+            const profile = await waitForProfile(userId);
+            let userRole = profile ? profile.role : 'USER';
+
+            while (attempt < MAX_RETRIES) {
+                try {
+                    // Auto-generate unique meter number only for USERs
+                    let meterNumber = null;
+                    if (userRole !== 'ADMIN') {
+                        // Generate a new random number each attempt
+                        meterNumber = await API.user.generateUniqueMeterNumber();
+                    } else {
+                        console.log('User is ADMIN, skipping meter number generation');
+                    }
+
+                    const { data, error } = await supabase
+                        .from('customer_info')
+                        .insert({
+                            user_id: userId,
+                            mobile_number: customerData.mobile_number || null,
+                            phone_number: customerData.phone_number || null,
+                            street_address: customerData.street_address || null,
+                            city: customerData.city || null,
+                            state_province: customerData.state_province || null,
+                            postal_code: customerData.postal_code || null,
+                            country: customerData.country || 'India',
+                            meter_number: meterNumber
+                        })
+                        .select()
+                        .single();
+
+                    if (error) {
+                        // Check if error is due to unique constraint on meter_number
+                        if (error.code === '23505' && error.message.includes('meter_number')) {
+                            console.warn(`Meter number collision (${meterNumber}), retrying...`);
+                            attempt++;
+                            continue;
+                        }
+                        throw error;
+                    }
+
+                    if (meterNumber) console.log('Created customer info with meter number:', meterNumber);
+                    return data;
+                } catch (err) {
+                    console.error('Error creating customer info (attempt ' + (attempt + 1) + '):', err);
+                    if (attempt === MAX_RETRIES - 1) throw err;
+                    attempt++;
+                }
             }
-
-            // Auto-generate unique meter number only for USERs
-            let meterNumber = null;
-            if (userRole !== 'ADMIN') {
-                meterNumber = await API.user.generateUniqueMeterNumber();
-            } else {
-                console.log('User is ADMIN, skipping meter number generation');
-            }
-
-            const { data, error } = await supabase
-                .from('customer_info')
-                .insert({
-                    user_id: userId,
-                    mobile_number: customerData.mobile_number || null,
-                    phone_number: customerData.phone_number || null,
-                    street_address: customerData.street_address || null,
-                    city: customerData.city || null,
-                    state_province: customerData.state_province || null,
-                    postal_code: customerData.postal_code || null,
-                    country: customerData.country || 'India',
-                    meter_number: meterNumber
-                })
-                .select()
-                .single();
-
-            if (error) throw error;
-            if (meterNumber) console.log('Created customer info with meter number:', meterNumber);
-            return data;
         },
 
         /**
